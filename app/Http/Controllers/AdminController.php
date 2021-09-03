@@ -109,6 +109,6 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('auth.login', ['guard' => 'admin']);
+        return view('auth.adminLogin', ['guard' => 'admin']);
     }
 }
