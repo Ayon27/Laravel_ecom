@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\User\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,25 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-//uses web auth guard, for users
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-
-
-
-
-
 
 //Admin routes grouped for logout redirect
 Route::group(['middleware' => 'prevent-back-button'], function () {
-
     //Admin Route after login
     Route::group(['middleware' => ['admin:admin']], function () {
         Route::get('/aov', [AdminController::class, 'index']);
@@ -52,3 +37,15 @@ Route::group(['middleware' => 'prevent-back-button'], function () {
     Route::get('/admin/profile/password', [AdminProfileController::class, 'changePassword'])->name('admin.password.change');
     Route::post('/admin/profile/password/update', [AdminProfileController::class, 'updatePassword'])->name('admin.password.update');
 });
+
+
+//User Routes
+// Route::middleware(['auth:sanctum,web', 'verified'])->get('/', function () { //uses web auth guard, for users
+//     return view('user.index');
+// })->name('dashboard');
+
+Route::get('/', [IndexController::class, 'index'])->name('home');
+
+Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

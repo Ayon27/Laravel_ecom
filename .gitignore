@@ -16,3 +16,4 @@ yarn-error.log
 package-lock.json
 /public/uploads/*
 /public/admin/images/
+/public/user/assets/images/

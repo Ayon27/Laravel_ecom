@@ -36,6 +36,7 @@
                                 <form action="{{ isset($guard) ? url($guard.'/login') : route('login') }}"
                                     method="post">
                                     @csrf
+
                                     @if($errors->has('email'))
                                     <div class="text-center error text-danger mb-5">
                                         <h4
@@ -43,6 +44,7 @@
                                             {{ $errors->first('email') }}</h4>
                                     </div>
                                     @endif
+
                                     <div class="form-group mt-5 mb-5">
 
 
