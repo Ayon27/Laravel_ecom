@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
-use Illuminate\Support\Facades\Storage;
 use Hash;
 
 class AdminProfileController extends Controller

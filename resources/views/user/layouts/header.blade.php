@@ -1,4 +1,4 @@
-<header class="header-style-1" style="background: #202020">
+<header class="header-style-1" style="background: #071621">
 
     <!-- ============================================== TOP MENU ============================================== -->
     <div class="top-bar animate-dropdown">
@@ -40,7 +40,7 @@
                                     </a></li>
 
                                 <li name="account" style="margin-top: 1vh">
-                                    <a href="">
+                                    <a href="{{ route('user.logout') }}">
                                         <h5><i class="icon fa fa-sign-out"></i> &nbsp;
                                             Sign Out</h5>
                                     </a>
