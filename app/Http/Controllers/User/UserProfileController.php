@@ -90,7 +90,7 @@ class UserProfileController extends Controller
     {
         $validatedInputs = $request->validate([
             'current_password' => 'required|min:8',
-            'new_password' => 'required|alpha_num|min:8',
+            'new_password' => 'required|min:8',
             'new_password_confirm' => 'required|same:new_password'
 
         ], [
