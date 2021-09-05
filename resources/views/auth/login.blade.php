@@ -52,11 +52,9 @@
                         </div>
 
                         <div class="radio outer-xs">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Remember
-                                me!
-                            </label>
-                            <a href="{{ route('password.request') }}" class="forgot-password pull-right">Forgot your
+
+                            <a href="{{ route('password.request') }}" class="forgot-password pull-right"
+                                style="color: red"><i class="fa fa-key" aria-hidden="true"></i>Forgot your
                                 Password?</a>
                         </div>
 

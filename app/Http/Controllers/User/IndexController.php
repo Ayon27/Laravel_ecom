@@ -13,4 +13,10 @@ class IndexController extends Controller
     {
         return view('user.index');
     }
+
+    public function loginRedir()
+    {
+        // return redirect()->route('home');
+        return view('dashboard');
+    }
 }

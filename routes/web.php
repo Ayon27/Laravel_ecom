@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\IndexController;
+use App\Http\Controllers\user\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,7 @@ Route::group(['middleware' => 'prevent-back-button'], function () {
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', [IndexController::class, 'loginRedir'])->name('dashboard');
+
+
+Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile');

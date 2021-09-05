@@ -9,9 +9,11 @@
             <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
 
                 <!-- ================================== TOP NAVIGATION ================================== -->
-                <div class="side-menu animate-dropdown outer-bottom-xs">
-                    <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categories</div>
-                    <nav class="yamm megamenu-horizontal">
+                <div class="side-menu animate-dropdown outer-bottom-xs " style="cursor: pointer">
+                    <div class="head" data-target="#sideNav" data-toggle="collapse" class="navbar-toggle collapsed"><i
+                            class="icon fa fa-align-justify fa-fw"></i> Categories</div>
+
+                    <nav class="yamm megamenu-horizontal" id="sideNav">
                         <ul class="nav">
                             <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle"
                                     data-toggle="dropdown"><i class="icon fa fa-shopping-bag"

@@ -1,4 +1,4 @@
-<header class="header-style-2">
+<header class="header-style-1" style="background: #202020">
 
     <!-- ============================================== TOP MENU ============================================== -->
     <div class="top-bar animate-dropdown">
@@ -12,7 +12,7 @@
                         <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
 
                         @auth
-                        <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>Profile</a></li>
+                        <li><a href="{{ route('user.profile') }}"><i class="icon fa fa-user"></i>Profile</a></li>
                         @else
                         <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login</a></li>
                         <li><a href="{{ route('register') }}"><i class="icon fa fa-lock"></i>Register</a></li>
@@ -156,9 +156,9 @@
     <!-- /.main-header -->
 
     <!-- ============================================== NAVBAR ============================================== -->
-    <div class="header-nav animate-dropdown">
+    <div class="header-nav animate-dropdown" style="background: #847d7d">
         <div class="container">
-            <div class="yamm navbar navbar-default" role="navigation">
+            <div class="yamm navbar navbar-default " role="navigation">
                 <div class="navbar-header">
                     <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse"
                         class="navbar-toggle collapsed" type="button">
@@ -169,8 +169,9 @@
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw"> <a href="home.html" data-hover="dropdown"
-                                        class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
+                                <li class="active dropdown yamm-fw"> <a href="{{ url('/') }}" data-hover="dropdown"
+                                        class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                </li>
                                 <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown"
                                         class="dropdown-toggle" data-toggle="dropdown">Clothing</a>
                                     <ul class="dropdown-menu container">
