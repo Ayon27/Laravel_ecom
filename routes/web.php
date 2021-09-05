@@ -48,6 +48,9 @@ Route::group(['middleware' => 'prevent-back-button'], function () {
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/web/dashboard', [IndexController::class, 'loginRedir'])->name('dashboard');
+Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+});
 
 
 Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile');

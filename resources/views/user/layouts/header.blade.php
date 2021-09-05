@@ -5,18 +5,12 @@
         <div class="container">
             <div class="header-top-inner">
                 <div class="cnt-account">
-                    <ul class="list-unstyled">
-                        <li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
-                        <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
-                        <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
-                        <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
 
-                        @auth
-                        <li><a href="{{ route('user.profile') }}"><i class="icon fa fa-user"></i>Profile</a></li>
-                        @else
-                        <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login</a></li>
-                        <li><a href="{{ route('register') }}"><i class="icon fa fa-lock"></i>Register</a></li>
-                        @endauth
+                    <ul class="list">
+                        <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
+                        <li><a href="#"><i class="fa fa-industry" aria-hidden="true"></i> Wholesale</a></li>
+                        <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a></li>
+
 
 
                     </ul>
@@ -24,23 +18,47 @@
                 <!-- /.cnt-account -->
 
                 <div class="cnt-block">
-                    <ul class="list-unstyled list-inline">
+                    <ul class="list-styled list-inline">
+
+
+                        @auth
+
                         <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
-                                data-toggle="dropdown"><span class="value">USD </span><b class="caret"></b></a>
+                                data-toggle="dropdown"><span class="value"><i class="icon fa fa-user"></i> My
+                                    Account</a>
+                            </span><b class="caret"></b></a>
+
                             <ul class="dropdown-menu">
-                                <li><a href="#">USD</a></li>
-                                <li><a href="#">INR</a></li>
-                                <li><a href="#">GBP</a></li>
+                                <li name="account" style="margin-top: 1vh;}"><a href="{{ route('user.profile') }}">
+                                        <h5><i class="icon fa fa-user"></i> &nbsp;
+                                            Manage Profile</h5>
+                                    </a>
+                                </li>
+                                <li name="account" style="margin-top: 1vh"><a href="#">
+                                        <h5><i class="icon fa fa-list"></i> &nbsp;
+                                            View Orders</h5>
+                                    </a></li>
+
+                                <li name="account" style="margin-top: 1vh">
+                                    <a href="">
+                                        <h5><i class="icon fa fa-sign-out"></i> &nbsp;
+                                            Sign Out</h5>
+                                    </a>
+                                    </form>
+
+                                </li>
+
+                                </form>
+
                             </ul>
                         </li>
-                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
-                                data-toggle="dropdown"><span class="value">English </span><b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">French</a></li>
-                                <li><a href="#">German</a></li>
-                            </ul>
-                        </li>
+                        @else
+                        <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
+                                <strong style="color: white">Login</strong> </a></li> |
+                        <li><a href="{{ route('register') }}"><i class="icon fa fa-lock"></i> <strong
+                                    style="color: white"> Register</strong></a></li>
+                        @endauth
+
                     </ul>
                     <!-- /.list-unstyled -->
                 </div>

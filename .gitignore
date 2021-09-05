@@ -17,3 +17,4 @@ package-lock.json
 /public/uploads/*
 /public/admin/images/
 /public/user/assets/images/
+/public/user/assets/css/images

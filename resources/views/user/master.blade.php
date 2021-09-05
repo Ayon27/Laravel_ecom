@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('user/assets/css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('user/assets/css/blue.css') }}">
@@ -114,27 +115,29 @@
         <script>
             @if(Session::has('message'))
 
-                                var type = "{{ Session::get('alert-type','info') }}"
+            var type = "{{ Session::get('alert-type','info') }}"
 
-                                 switch(type){
-                                    case 'info':
-                                    toastr.info(" {{ Session::get('message') }} ");
-                                    break;
+                switch(type){
+                case 'info':
+                toastr.info(" {{ Session::get('message') }} ");
+                break;
 
-                                    case 'success':
-                                    toastr.success(" {{ Session::get('message') }} ");
-                                    break;
+                case 'success':
+                toastr.success(" {{ Session::get('message') }} ");
+                break;
 
-                                    case 'warning':
-                                    toastr.warning(" {{ Session::get('message') }} ");
-                                    break;
+                case 'warning':
+                toastr.warning(" {{ Session::get('message') }} ");
+                break;
 
-                                    case 'error':
-                                    toastr.error(" {{ Session::get('message') }} ");
-                                    break;
-                                 }
-                                 @endif
-        </script>s
+                case 'error':
+                toastr.error(" {{ Session::get('message') }} ");
+                break;
+                }
+            @endif
+
+        </script>
+
     </body>
 
 
