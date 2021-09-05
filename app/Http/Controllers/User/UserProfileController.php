@@ -90,12 +90,13 @@ class UserProfileController extends Controller
     {
         $validatedInputs = $request->validate([
             'current_password' => 'required|min:8',
-            'new_password' => 'required|min:8',
+            'new_password' => 'required|min:8|regex:`^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$`',
             'new_password_confirm' => 'required|same:new_password'
 
         ], [
             'current_password.min' => 'The current password is incorrect',
             'new_password.min' => 'Password must contain 8 characters',
+            'new_password.regex' => 'Password must contain at least 1 uppercase letter, 1 lowercase letter, numbers, and must of length 8 or more',
             'new_password_confirm.same' => 'The passwords do not match'
         ]);
 
