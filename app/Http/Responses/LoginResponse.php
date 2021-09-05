@@ -23,6 +23,6 @@ class LoginResponse implements LoginResponseContract
         if (Auth::guard('admin')->check())
             return redirect()->intended('admin/dashboard');
         else if (Auth::guard('user')->check())
-            return redirect()->intended();
+            return redirect()->route('home');
     }
 }

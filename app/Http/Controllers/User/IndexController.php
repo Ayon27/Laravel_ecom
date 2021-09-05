@@ -16,7 +16,6 @@ class IndexController extends Controller
 
     public function loginRedir()
     {
-        // return redirect()->route('home');
-        return view('dashboard');
+        return redirect()->route('home');
     }
 }
