@@ -46,7 +46,8 @@ Route::group(['middleware' => 'prevent-back-button'], function () {
 
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout'); //logout admin
 
-    Route::get('/admin/categories', [CategoryController::class, 'index'])->name('category.all'); //logout admin
+    Route::get('/admin/categories', [CategoryController::class, 'index'])->name('category.all'); //category index
+    Route::get('/admin/categories/add', [CategoryController::class, 'create'])->name('category.add'); //category add
 
 });
 
