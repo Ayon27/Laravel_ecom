@@ -78,4 +78,12 @@ Route::group(['middleware' => ['prevent-back-button']], function () {
     //user password
     Route::get('/user/password', [UserProfileController::class, 'changePassword'])->name('user.password.change');
     Route::post('/user/password/save', [UserProfileController::class, 'updatePassword'])->name('user.password.change.save');
+
+    //verify user email
+    Route::get('/email/verify', function () {
+        return view('auth.verify-email');
+    })->middleware('auth')->name('verification.notice');
 });
+
+
+Route::get('/forgot-password-sent', [IndexController::class, 'password_reset_redir'])->name('password.reset.sent');

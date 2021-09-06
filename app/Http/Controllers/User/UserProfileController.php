@@ -21,6 +21,8 @@ class UserProfileController extends Controller
         $this->middleware('auth:sanctum,web');
 
         $this->middleware('prevent-back-button');
+
+        $this->middleware('isEmailVerified');
     }
 
     public function index()

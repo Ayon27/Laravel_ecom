@@ -13,8 +13,8 @@
 
                     <!-- create a new account -->
                     <div class="col-md-6 col-sm-6 create-new-account">
-                        <h4 class="checkout-subtitle">Create a new account</h4>
-                        <p class="text title-tag-line">Create your new account.</p>
+                        <h4 class="checkout-subtitle">Welcome to All-Out Vision Limited</h4>
+                        <p class="text title-tag-line">Please create your new account.</p>
                         <form class="register-form outer-top-xs" action="{{ route('register') }}" method="POST">
                             @csrf
 
@@ -49,7 +49,7 @@
                                 <label class="info-title" for="exampleInputEmail1">Phone Number
                                     <span>*</span></label>
                                 <input type="text" class="form-control unicase-form-control text-input" id="phone"
-                                    name="phone">
+                                    name="phone" maxlength="11" minlength="11">
 
                                 @error('phone')
                                 <p style="color: red"> <small>{{ $message }}</small> </p>
@@ -84,10 +84,10 @@
 
                             <div class="form-group">
 
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" name="terms" id="terms">
+                                <div class="form-check text-center" style="margin-bottom: 1vh">
                                     <label class="form-check-label" for="flexCheckDefault">
-                                        I agree to the <a href="">terms and conditions</a>
+                                        <strong>By signing up you agree to the <a href="">terms and
+                                                conditions</a></strong>
                                     </label>
                                     @error('terms')
                                     <p style="color: red"> <small>{{ $message }}</small> </p>

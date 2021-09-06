@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
                 <img style="border-radius: 50%"
-                    src="{{$user->profile_photo_path === NULL ? asset($user->profile_photo_url) : asset($user->profile_photo_path) }}"
+                    src="{{$user->profile_photo_path === NULL ? asset(Auth::user()->profile_photo_url) : asset($user->profile_photo_path) }}"
                     alt="profile photo" class="rounded-circle" width="150" id="img_to_show">
                 <div class="mt-5">
                     <h2>{{ $user->name }}</h2>

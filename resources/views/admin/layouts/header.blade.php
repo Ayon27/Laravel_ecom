@@ -118,7 +118,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown"
                         title="User">
-                        <img src="{{$admin->profile_photo_path === NULL ?asset($admin->profile_photo_url) : asset($admin->profile_photo_path) }}"
+                        <img src="{{$admin->profile_photo_path === NULL ? asset(Auth::user()->profile_photo_url) : asset($admin->profile_photo_path) }}"
                             alt="">
 
                     </a>

@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \App\Http\Middleware\AdminRedirectIfAuthenticated::class,
         'prevent-back-button' => \App\Http\Middleware\PreventBackButton::class,
-        'XssSanitizer' => \App\Http\Middleware\InputSanitization::class
+        'XssSanitizer' => \App\Http\Middleware\InputSanitization::class,
+        'isEmailVerified' => \App\Http\Middleware\EmailVerificationCheck::class
     ];
 }
