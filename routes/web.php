@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\IndexController;
 use App\Http\Controllers\user\UserController;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//Admin routes grouped for logout redirect
+//Admin routes grouped for back button prevention after logging out
 Route::group(['middleware' => 'prevent-back-button'], function () {
     //Admin Route after login
     Route::group(['middleware' => ['admin:admin']], function () {
@@ -34,7 +35,7 @@ Route::group(['middleware' => 'prevent-back-button'], function () {
 
     Route::get('/admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
 
-    //sanitized
+    //sanitizes inputs
     Route::group(['middleware' => ['XssSanitizer']], function () {
         Route::get('/admin/profile/edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
         Route::post('/admin/profile/update', [AdminProfileController::class, 'update'])->name('admin.profile.update');
@@ -44,7 +45,12 @@ Route::group(['middleware' => 'prevent-back-button'], function () {
     Route::post('/admin/profile/password/update', [AdminProfileController::class, 'updatePassword'])->name('admin.password.update');
 
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout'); //logout admin
+
+    Route::get('/admin/categories', [CategoryController::class, 'index'])->name('category.all'); //logout admin
+
 });
+
+
 
 
 //User Routes

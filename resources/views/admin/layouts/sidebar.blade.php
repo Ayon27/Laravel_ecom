@@ -4,7 +4,7 @@
 
         <div class="user-profile">
             <div class="ulogo">
-                <a href="{{ route('admin.login') }}">
+                <a href="{{ route('dashboard.admin') }}">
                     <!-- logo for regular state and mobile devices -->
                     <div class="d-flex align-items-center justify-content-center">
                         <img src="" alt="">
@@ -18,7 +18,7 @@
         <ul class="sidebar-menu" data-widget="tree">
 
             <li>
-                <a href="{{ route ('admin.login') }}">
+                <a href="{{ route ('dashboard.admin') }}">
                     <i data-feather="pie-chart"></i>
                     <span>Dashboard</span>
                 </a>
@@ -27,14 +27,14 @@
             <li class="treeview">
                 <a href="#">
                     <i data-feather="message-circle"></i>
-                    <span>Application</span>
+                    <span>Manage Categories</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="chat.html"><i class="ti-more"></i>Chat</a></li>
-                    <li><a href="calendar.html"><i class="ti-more"></i>Calendar</a></li>
+                    <li><a href="{{ route('category.all') }}"><i class="ti-more"></i>All Categories</a></li>
+                    <li><a href="calendar.html"><i class="ti-more"></i>Sub Categories</a></li>
                 </ul>
             </li>
 
