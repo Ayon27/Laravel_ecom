@@ -47,7 +47,7 @@ Route::group(['middleware' => 'prevent-back-button'], function () {
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout'); //logout admin
 
     Route::get('/admin/categories', [CategoryController::class, 'index'])->name('category.all'); //category index
-    Route::get('/admin/categories/add', [CategoryController::class, 'create'])->name('category.add'); //category add
+    Route::post('/admin/categories/add', [CategoryController::class, 'create'])->name('category.add'); //category add
 
 });
 
@@ -65,9 +65,9 @@ Route::get('/', [IndexController::class, 'index'])->name('home');
 
 //user auth routes
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/web/dashboard', [IndexController::class, 'loginRedir'])->name('dashboard');
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-});
+// Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// });
 
 //restricted routes. auth required
 Route::group(['middleware' => ['prevent-back-button']], function () {
@@ -90,7 +90,8 @@ Route::group(['middleware' => ['prevent-back-button']], function () {
     Route::get('/email/verify', function () {
         return view('auth.verify-email');
     })->middleware('auth')->name('verification.notice');
+
+
+    Route::get('/forgot-password-sent', [IndexController::class, 'password_reset_redir'])->name('password.reset.sent'); //forgot password email
+
 });
-
-
-Route::get('/forgot-password-sent', [IndexController::class, 'password_reset_redir'])->name('password.reset.sent');

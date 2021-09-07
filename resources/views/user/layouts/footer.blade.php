@@ -1,4 +1,4 @@
-<footer id="footer" class="footer color-bg" style="position: absolute;
+<footer id="footer" class="footer color-bg fixed-bottom" style="position: relative;
   bottom: 0;
   width: 100%;">
     <div class="footer-bottom">

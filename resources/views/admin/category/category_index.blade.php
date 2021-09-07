@@ -102,15 +102,17 @@
                                     <div class="form-group">
                                         <h5>Category Name (English) <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="password" name="category_name_en" class="form-control"
-                                                required="" data-validation-required-message="This field is required"
-                                                value="">
+                                            <input type="text" name="category_name_en" class="form-control" required=""
+                                                data-validation-required-message="This field is required" value="">
                                             <div class="help-block"></div>
+
+                                            @error('category_name_en')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+
                                         </div>
 
-                                        @error('category_name_bn')
-                                        <p class="text-danger">{{ $message }}</p>
-                                        @enderror
+
 
                                     </div>
 
@@ -129,16 +131,19 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <h5>Category Image <span class="text-danger">*</span></h5>
+                                        <h5>Category Icon <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="file" name="image" class="form-control" required=""
                                                 data-validation-required-message="This field is required" value="">
                                             <div class="help-block"></div>
+
+                                            @error('image')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+
                                         </div>
 
-                                        @error('image')
-                                        <p class="text-danger">{{ $message }}</p>
-                                        @enderror
+
 
                                     </div>
 
