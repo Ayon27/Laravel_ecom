@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\IndexController;
 use App\Http\Controllers\user\UserController;
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //Admin routes grouped for back button prevention after logging out
-Route::group(['middleware' => 'prevent-back-button'], function () {
+Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function () {
     //Admin Route after login
     Route::group(['middleware' => ['admin:admin']], function () {
         Route::get('/aov', [AdminController::class, 'index']);
@@ -33,21 +34,29 @@ Route::group(['middleware' => 'prevent-back-button'], function () {
         return view('admin.index');
     })->name('dashboard.admin');
 
-    Route::get('/admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
+    //admin profile routes
+    Route::get('/admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile'); //view
 
-    //sanitizes inputs
-    Route::group(['middleware' => ['XssSanitizer']], function () {
-        Route::get('/admin/profile/edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
-        Route::post('/admin/profile/update', [AdminProfileController::class, 'update'])->name('admin.profile.update');
-    });
+    Route::get('/admin/profile/edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit'); //edit profile
+    Route::post('/admin/profile/update', [AdminProfileController::class, 'update'])->name('admin.profile.update'); //save updates
 
-    Route::get('/admin/profile/password', [AdminProfileController::class, 'changePassword'])->name('admin.password.change');
-    Route::post('/admin/profile/password/update', [AdminProfileController::class, 'updatePassword'])->name('admin.password.update');
+    Route::get('/admin/profile/password', [AdminProfileController::class, 'changePassword'])->name('admin.password.change'); //change admin pwd
+    Route::post('/admin/profile/password/update', [AdminProfileController::class, 'updatePassword'])->name('admin.password.update'); //update admin pwd
 
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout'); //logout admin
 
+
+    //category routes
     Route::get('/admin/categories', [CategoryController::class, 'index'])->name('category.all'); //category index
     Route::post('/admin/categories/add', [CategoryController::class, 'create'])->name('category.add'); //category add
+    Route::get('/admin/category/soft-delete/{id}', [CategoryController::class, 'delete'])->name('category.soft-delete'); //category soft delete
+    Route::get('/admin/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete'); //category destroy
+    Route::get('/admin/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit'); //category edit
+    Route::post('/admin/category/update', [CategoryController::class, 'update'])->name('category.update'); //category update
+    Route::post('/admin/category/restore', [CategoryController::class, 'restore'])->name('category.restore'); //category restore
+
+    //sub category routes
+    Route::get('/admin/sub-categories', [SubcategoryController::class, 'index'])->name('subcategory.all'); //category index
 
 });
 
@@ -70,7 +79,7 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/web/dashboard', [Inde
 // });
 
 //restricted routes. auth required
-Route::group(['middleware' => ['prevent-back-button']], function () {
+Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function () {
 
     //user profile routes
     Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile');

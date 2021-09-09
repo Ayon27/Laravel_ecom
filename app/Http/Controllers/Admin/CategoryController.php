@@ -7,6 +7,7 @@ use App\Models\Category;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Image;
 
 class CategoryController extends Controller
@@ -28,7 +29,9 @@ class CategoryController extends Controller
 
         $categories = Category::latest()->get();
 
-        return view('admin.category.category_index', compact('categories'));
+        $categories_deleted =  Category::onlyTrashed()->latest()->paginate(5);
+
+        return view('admin.category.category_index', compact('categories', 'categories_deleted'));
     }
 
     /**
@@ -43,27 +46,21 @@ class CategoryController extends Controller
         $request->validate([
             'category_name_en' => 'required',
             'category_name_bn' => 'required',
-            'image' => 'required|image|mimes:png,jpg,jpeg|max:5000',
         ], [
-            'image.image' => 'The icon must be an image of type .png/.jpg/.jpeg'
+            'category_name_en.required' => 'Category name (English) is required',
+            'category_name_bn.required' => 'Category name (Bengali) is required',
         ]);
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $img_name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(100, 100)->save(public_path('/uploads/category_icons/') . $img_name_gen);
-            $img_loc = 'uploads/category_icons/' . $img_name_gen;
-        }
 
         try {
 
             $category = new Category();
 
+            $category->admin_id = Auth::user()->id;
             $category->category_name_en = $request->category_name_en;
             $category->category_name_bn = $request->category_name_bn;
             $category->category_slug_en = strtolower(str_replace(' ', '-', $request->category_name_en));
             $category->category_slug_bn = strtolower(str_replace(' ', '-', $request->category_name_bn));
-            $category->category_icon = $img_loc;
             $category->created_at = Carbon::now();
             $this->store($category);
 
@@ -116,6 +113,16 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
+        try {
+            $category = Category::findorFail($id);
+            return view('admin.category.category_edit', compact('category'));
+        } catch (Exception $e) {
+            $notification = array(
+                'message' => 'An eror occurred',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
     }
 
     /**
@@ -125,9 +132,49 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $request->validate([
+            'category_name_en' => 'required',
+            'category_name_bn' => 'required',
+        ], [
+            'category_name_en.required' => 'Category name (English) is required',
+            'category_name_bn.required' => 'Category name (Bengali) is required',
+        ]);
+
+        $id = $request->category_id;
+
+
+        $category = Category::find($id);
+
+
+        echo $request->category_name_en;
+        echo $request->category_name_bn;
+        try {
+
+            Category::find($id)->update([
+                'category_name_en' => $request->category_name_en,
+                'category_name_bn' => $request->category_name_bn,
+                'category_slug_en' => strtolower(str_replace(' ', '-', $request->category_name_en)),
+                'category_slug_bn' => strtolower(str_replace(' ', '-', $request->category_name_bn)),
+                'updated_at' => Carbon::now()
+            ]);
+
+            $notification = array(
+                'message' => 'Category Updated Successfully!',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('category.all')->with($notification);
+        } catch (Exception $e) {
+            $notification = array(
+                'message' => 'Failed to Update!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->route('category.all')->with($notification);
+        }
     }
 
     /**
@@ -139,5 +186,64 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+
+        $category = Category::onlyTrashed()->find($id);
+
+
+        try {
+            $category = Category::onlyTrashed($id)->forceDelete();
+            $notification = array(
+                'message' => 'Category deleted permanently',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        } catch (Exception $e) {
+            $notification = array(
+                'message' => 'Failed',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $delete =  Category::find($id)->delete();
+
+            $notification = array(
+                'message' => 'Category successfully deleted',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->back()->with($notification);
+        } catch (Exception $e) {
+
+            $notification = array(
+                'message' => 'Category successfully deleted',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function restore(Request $request)
+    {
+        $id = $request->category_restore_id;
+        try {
+            $category = Category::onlyTrashed($id)->restore();
+
+            $notification = array(
+                'message' => 'Category successfully restored',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        } catch (Exception $e) {
+            $notification = array(
+                'message' => 'Category restoration failed',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
     }
 }

@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="icon" href="{{ asset('admin/images/favicon.ico') }}">
+        <link rel="icon" href="{{ asset('assets/icons/all-out-logo-1.ico') }}">
 
         <title>AOV - Admin Dashboard</title>
 
@@ -46,9 +46,6 @@
 
         </div>
         <!-- ./wrapper -->
-
-
-
     </body>
     @include('admin.layouts.footer')
 
@@ -63,8 +60,12 @@
     <!--  Admin  -->
     <script src="{{ asset('admin/js/template.js') }}"></script>
     <script src="{{ asset('admin/js/pages/dashboard.js') }}"></script>
-    {{-- <script src="{{ asset("../assets/vendor_components/datatable/datatables.min.js") }}"></script>
-    <script src="{{ asset("admin/js/pages/data-table.js") }}"></script> --}}
+
+    <script src="{{ asset("../assets/vendor_components/datatable/datatables.min.js") }}"></script>
+    <script src="{{ asset("admin/js/pages/data-table.js") }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js">
     </script>
 
