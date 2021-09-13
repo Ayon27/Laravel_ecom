@@ -34,9 +34,11 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ Request::route()->getName() == 'category.all' ? "active" : "" }}">
-                        <a href="{{ route('category.all') }}"><i class="ti-more"></i>All Categories</a></li>
+                        <a href="{{ route('category.all') }}"><i class="ti-more"></i>Categories</a></li>
                     <li class="{{ Request::route()->getName() == 'subcategory.all' ? "active" : "" }}"><a
                             href="{{ route('subcategory.all') }}"><i class="ti-more"></i>Sub Categories</a></li>
+                    <li class="{{ Request::route()->getName() == 'sub.subcategory.all' ? "active" : "" }}"><a
+                            href="{{ route('sub.subcategory.all') }}"><i class="ti-more"></i>Sub sub-Categories</a></li>
                 </ul>
             </li>
 

@@ -47,7 +47,7 @@
             <!-- Sign-in -->
             <div class="col-md-12 col-sm-12 sign-in">
 
-                <h3 class="text-center">Thank you for signing up!</h3>
+                <h3 class="text-center" style="margin-bottom: 5vh">Thank you for signing up!</h3>
                 <h5 class=""> Could you verify your email address by clicking on the link we just emailed to you? If
                     you didn't receive the email, we will gladly send you another. However do check that spam
                     folder beforehand! </h5>
@@ -56,7 +56,7 @@
                     action="{{ route('verification.send') }}">
                     @csrf
 
-                    <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Resend Verification
+                    <button type="submit" class="btn-upper btn btn-primary">Resend Verification
                         Email</button>
 
                 </form>

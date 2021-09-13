@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\Admin\Sub_subcategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\IndexController;
 use App\Http\Controllers\user\UserController;
@@ -30,7 +31,7 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     });
 
     //uses admin auth guard. for admins
-    Route::middleware(['auth:admin,admin', 'verified'])->get('/admin/dashboard', function () {
+    Route::middleware(['auth:admin,admin'])->get('/admin/dashboard', function () {
         return view('admin.index');
     })->name('dashboard.admin');
 
@@ -56,7 +57,18 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::post('/admin/category/restore', [CategoryController::class, 'restore'])->name('category.restore'); //category restore
 
     //sub category routes
-    Route::get('/admin/sub-categories', [SubcategoryController::class, 'index'])->name('subcategory.all'); //category index
+    Route::get('/admin/sub-categories', [SubcategoryController::class, 'index'])->name('subcategory.all'); //sub-category index
+    Route::post('/admin/sub-category/add', [SubcategoryController::class, 'create'])->name('subcategory.add'); //sub-category add
+    Route::get('/admin/sub-category/edit/{id}', [SubcategoryController::class, 'edit'])->name('subcategory.edit'); //sub-category edit
+    Route::post('/admin/sub-category/update', [SubcategoryController::class, 'update'])->name('subcategory.update'); //sub-category update
+    Route::get('/admin/sub-category/soft-delete/{id}', [SubcategoryController::class, 'delete'])->name('subcategory.soft-delete'); //subcategory soft delete
+    Route::post('/admin/sub-category/restore', [SubcategoryController::class, 'restore'])->name('subcategory.restore'); //subcategory restore
+    Route::get('/admin/sub-category/delete/{id}', [SubcategoryController::class, 'destroy'])->name('subcategory.delete'); //subcategory destroy
+
+    //sub sub-category routes
+    Route::get('/admin/sub-subcategories', [Sub_subcategoryController::class, 'index'])->name('sub.subcategory.all'); //sub-subcategory index
+    Route::post('/admin/sub-subcategory/add', [Sub_subcategoryController::class, 'create'])->name('sub.subcategory.add'); //sub-category add
+    Route::post('/admin/sub-subcategory/ajax/{category_id}', [Sub_subcategoryController::class, 'getSubCategory'])->name('sub.subcategory.ajax'); //sub-category add
 
 });
 

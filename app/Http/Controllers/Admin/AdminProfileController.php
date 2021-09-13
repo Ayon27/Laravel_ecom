@@ -17,6 +17,7 @@ class AdminProfileController extends Controller
     {
         $this->middleware('auth:admin,admin');
         $this->middleware('prevent-back-button');
+        $this->middleware('XssSanitizer');
     }
 
 

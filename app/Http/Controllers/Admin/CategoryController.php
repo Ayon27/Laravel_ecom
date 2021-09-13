@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Image;
 
 class CategoryController extends Controller
 {
@@ -17,6 +17,7 @@ class CategoryController extends Controller
     {
         $this->middleware('auth:admin,admin');
         $this->middleware('prevent-back-button');
+        $this->middleware('XssSanitizer');
     }
     /**
      * Display a listing of the resource.
@@ -29,7 +30,7 @@ class CategoryController extends Controller
 
         $categories = Category::latest()->get();
 
-        $categories_deleted =  Category::onlyTrashed()->latest()->paginate(5);
+        $categories_deleted =  Category::onlyTrashed()->latest()->get();
 
         return view('admin.category.category_index', compact('categories', 'categories_deleted'));
     }
@@ -44,8 +45,8 @@ class CategoryController extends Controller
         //
 
         $request->validate([
-            'category_name_en' => 'required',
-            'category_name_bn' => 'required',
+            'category_name_en' => 'required|max:200',
+            'category_name_bn' => 'required|max:200',
         ], [
             'category_name_en.required' => 'Category name (English) is required',
             'category_name_bn.required' => 'Category name (Bengali) is required',
@@ -68,13 +69,12 @@ class CategoryController extends Controller
                 'message' => 'Successfully added',
                 'alert-type' => 'success'
             );
-
-            return redirect()->back()->with($notification);
         } catch (Exception $e) {
             $notification = array(
                 'message' => 'Failed to add category',
                 'alert-type' => 'error'
             );
+        } finally {
             return redirect()->back()->with($notification);
         }
     }
@@ -114,7 +114,7 @@ class CategoryController extends Controller
     {
         //
         try {
-            $category = Category::findorFail($id);
+            $category = Category::findOrFail($id);
             return view('admin.category.category_edit', compact('category'));
         } catch (Exception $e) {
             $notification = array(
@@ -136,8 +136,8 @@ class CategoryController extends Controller
     {
         //
         $request->validate([
-            'category_name_en' => 'required',
-            'category_name_bn' => 'required',
+            'category_name_en' => 'required|max:200',
+            'category_name_bn' => 'required|max:200',
         ], [
             'category_name_en.required' => 'Category name (English) is required',
             'category_name_bn.required' => 'Category name (Bengali) is required',
@@ -145,12 +145,6 @@ class CategoryController extends Controller
 
         $id = $request->category_id;
 
-
-        $category = Category::find($id);
-
-
-        echo $request->category_name_en;
-        echo $request->category_name_bn;
         try {
 
             Category::find($id)->update([
@@ -187,42 +181,42 @@ class CategoryController extends Controller
     {
         //
 
-        $category = Category::onlyTrashed()->find($id);
-
 
         try {
-            $category = Category::onlyTrashed($id)->forceDelete();
+            $category = Category::onlyTrashed()->find($id)->forceDelete();
             $notification = array(
                 'message' => 'Category deleted permanently',
                 'alert-type' => 'success'
             );
-            return redirect()->back()->with($notification);
         } catch (Exception $e) {
             $notification = array(
                 'message' => 'Failed',
                 'alert-type' => 'error'
             );
+        } finally {
             return redirect()->back()->with($notification);
         }
     }
 
     public function delete($id)
     {
+        $subcategoryController =  new SubcategoryController();
         try {
+            $subcategoryController->deleteDependant($id);
+
             $delete =  Category::find($id)->delete();
 
             $notification = array(
                 'message' => 'Category successfully deleted',
                 'alert-type' => 'success'
             );
-
-            return redirect()->back()->with($notification);
         } catch (Exception $e) {
 
             $notification = array(
                 'message' => 'Category successfully deleted',
                 'alert-type' => 'success'
             );
+        } finally {
             return redirect()->back()->with($notification);
         }
     }
@@ -231,18 +225,18 @@ class CategoryController extends Controller
     {
         $id = $request->category_restore_id;
         try {
-            $category = Category::onlyTrashed($id)->restore();
+            $category = Category::onlyTrashed()->find($id)->restore();
 
             $notification = array(
                 'message' => 'Category successfully restored',
                 'alert-type' => 'success'
             );
-            return redirect()->back()->with($notification);
         } catch (Exception $e) {
             $notification = array(
                 'message' => 'Category restoration failed',
                 'alert-type' => 'error'
             );
+        } finally {
             return redirect()->back()->with($notification);
         }
     }

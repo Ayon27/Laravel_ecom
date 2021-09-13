@@ -6,18 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Subcategory extends Model
+class SubSubCategory extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
+
     protected $fillable = [
         'admin_id',
         'category_id',
-        'subcat_name_en',
-        'subcat_name_bn',
-        'subcat_slug_en',
-        'subcat_slug_bn',
+        'subcategory_id',
+        'subsubcat_name_en',
+        'subsubcat_name_bn',
+        'subsubcat_slug_en',
+        'subsubcat_slug_bn',
     ];
 
     public function admin()
@@ -28,5 +30,10 @@ class Subcategory extends Model
     public function category()
     {
         return $this->belongsTo(Category::class,  'category_id', 'id');
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(Subcategory::class,  'subcategory_id', 'id');
     }
 }

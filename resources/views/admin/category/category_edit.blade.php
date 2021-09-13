@@ -11,7 +11,7 @@
 
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Update Category</h3>
+                    <h3 class="box-title">Update Category "{{ $category->category_name_en }}"</h3>
                 </div>
 
                 <!-- /.box-header -->
