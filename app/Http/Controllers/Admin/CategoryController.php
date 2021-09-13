@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\Admin\Sub_subcategoryController;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Carbon\Carbon;
@@ -201,8 +202,12 @@ class CategoryController extends Controller
     public function delete($id)
     {
         $subcategoryController =  new SubcategoryController();
+        $sub_subcategoryController =  new Sub_subcategoryController();
         try {
+
+            $sub_subcategoryController->deleteDependantCat($id);
             $subcategoryController->deleteDependant($id);
+
 
             $delete =  Category::find($id)->delete();
 

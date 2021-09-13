@@ -279,4 +279,30 @@ class Sub_subcategoryController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+
+    public function deleteDependantSubcat($id)
+    {
+        $subcategory_id = $id;
+
+        try {
+            SubSubcategory::where('subcategory_id', '=', $subcategory_id)->delete();
+            SubSubcategory::onlyTrashed()->where('subcategory_id', '=', $subcategory_id)->forceDelete();
+        } catch (Exception $e) {
+        } finally {
+            return;
+        }
+    }
+
+    public function deleteDependantCat($id)
+    {
+        $category_id = $id;
+
+        try {
+            SubSubcategory::where('category_id', '=', $category_id)->delete();
+            SubSubcategory::onlyTrashed()->where('category_id', '=', $category_id)->forceDelete();
+        } catch (Exception $e) {
+        } finally {
+            return;
+        }
+    }
 }
