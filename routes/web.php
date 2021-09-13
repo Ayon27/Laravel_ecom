@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\Sub_subcategoryController;
 use App\Http\Controllers\AdminController;
@@ -75,10 +76,13 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::post('/admin/sub-subcategory/restore', [Sub_subcategoryController::class, 'restore'])->name('sub.subcategory.restore'); //sub-subcategory restore
     Route::get('/admin/sub-subcategory/delete/{id}', [Sub_subcategoryController::class, 'destroy'])->name('sub.subcategory.delete'); //sub-subcategory destroy
 
+
+    //product routes
+    Route::get('admin/product/view', [ProductController::class, 'AddProduct'])->name('add-product');
 });
 
 
-
+\
 
 //User Routes
 // Route::middleware(['auth:sanctum,web', 'verified'])->get('/', function () { //uses web auth guard, for users

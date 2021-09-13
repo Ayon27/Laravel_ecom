@@ -28,12 +28,19 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        try {
+            $categories = Category::latest()->get();
 
-        $categories = Category::latest()->get();
+            $categories_deleted =  Category::onlyTrashed()->latest()->get();
 
-        $categories_deleted =  Category::onlyTrashed()->latest()->get();
-
-        return view('admin.category.category_index', compact('categories', 'categories_deleted'));
+            return view('admin.category.category_index', compact('categories', 'categories_deleted'));
+        } catch (Exception $e) {
+            $notification = array(
+                'message' => 'An error occurred',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
     }
 
     /**
