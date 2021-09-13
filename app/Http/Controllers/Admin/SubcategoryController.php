@@ -29,7 +29,7 @@ class SubcategoryController extends Controller
     public function index()
     {
         //
-        $categories = Category::where('deleted_at', '=', NULL)->orderBy('category_name_en', 'ASC')->get();
+        $categories = Category::latest()->orderBy('category_name_en', 'ASC')->get();
         $subcats = Subcategory::latest()->get();
         $subcats_deleted =  Subcategory::onlyTrashed()->latest()->get();
 

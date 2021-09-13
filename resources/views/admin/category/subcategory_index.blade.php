@@ -166,11 +166,31 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <form action="{{ route('subcategory.add') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('subcategory.add') }}" method="POST">
                             @csrf
 
                             <div class="row">
                                 <div class="col-12">
+
+                                    <div class="form-group">
+                                        <h5>Select Category<span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <select name="category_id" id="select" required="" class="form-control"
+                                                aria-invalid="false" required>
+
+                                                <option value="" selected disabled>Select Category</option>
+
+                                                @foreach ($categories as $item)
+                                                <option value="{{ $item->id }}">{{ $item->category_name_en }}</option>
+                                                @endforeach
+
+                                            </select>
+                                            <div class="help-block"></div>
+                                        </div>
+                                        @error('category_id')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
 
                                     <div class="form-group">
                                         <h5>Subcategory Name (English) <span class="text-danger">*</span></h5>
@@ -205,25 +225,7 @@
 
                                     </div>
 
-                                    <div class="form-group">
-                                        <h5>Select Category<span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <select name="category_id" id="select" required="" class="form-control"
-                                                aria-invalid="false" required>
 
-                                                <option value="" selected disabled>Select Category</option>
-
-                                                @foreach ($categories as $item)
-                                                <option value="{{ $item->id }}">{{ $item->category_name_en }}</option>
-                                                @endforeach
-
-                                            </select>
-                                            <div class="help-block"></div>
-                                        </div>
-                                        @error('category_id')
-                                        <p class="text-danger">{{ $message }}</p>
-                                        @enderror
-                                    </div>
 
                                     <div class="d-flex justify-content-center">
                                         <button type="submit" class="btn btn-info mt-5">Add Subcategory</button>

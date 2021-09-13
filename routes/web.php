@@ -67,8 +67,13 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
 
     //sub sub-category routes
     Route::get('/admin/sub-subcategories', [Sub_subcategoryController::class, 'index'])->name('sub.subcategory.all'); //sub-subcategory index
-    Route::post('/admin/sub-subcategory/add', [Sub_subcategoryController::class, 'create'])->name('sub.subcategory.add'); //sub-category add
-    Route::post('/admin/sub-subcategory/ajax/{category_id}', [Sub_subcategoryController::class, 'getSubCategory'])->name('sub.subcategory.ajax'); //sub-category add
+    Route::post('/admin/sub-subcategory/add', [Sub_subcategoryController::class, 'create'])->name('sub.subcategory.add'); //sub-sub-category add
+    Route::post('/admin/sub-subcategory/ajax/{category_id}', [Sub_subcategoryController::class, 'getSubCategory'])->name('sub.subcategory.ajax'); //sub-sub-category add
+    Route::get('/admin/sub-subcategory/edit/{id}', [Sub_subcategoryController::class, 'edit'])->name('sub.subcategory.edit'); //sub-sub-category edit
+    Route::post('/admin/sub-subcategory/update', [Sub_subcategoryController::class, 'update'])->name('sub.subcategory.update'); //sub-sub-category update
+    Route::get('/admin/sub-subcategory/soft-delete/{id}', [Sub_subcategoryController::class, 'delete'])->name('sub.subcategory.soft-delete'); //sub-sub-category soft delete
+    Route::post('/admin/sub-subcategory/restore', [Sub_subcategoryController::class, 'restore'])->name('sub.subcategory.restore'); //sub-subcategory restore
+    Route::get('/admin/sub-subcategory/delete/{id}', [Sub_subcategoryController::class, 'destroy'])->name('sub.subcategory.delete'); //sub-subcategory destroy
 
 });
 

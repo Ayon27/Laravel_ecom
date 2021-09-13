@@ -155,7 +155,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <form action="{{ route('category.add') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('category.add') }}" method="POST">
                             @csrf
 
                             <div class="row">

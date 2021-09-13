@@ -55,10 +55,10 @@
 
                                                     <td>{{ $item->admin->name }}</td>
 
-                                                    <td><a href="{{ route('subcategory.edit', $item->id) }}"
+                                                    <td><a href="{{ route('sub.subcategory.edit', $item->id) }}"
                                                             class="btn btn-info"> <i class="fa fa-pencil"></i>
                                                             Edit</a>
-                                                        <a href="{{ route('subcategory.soft-delete',$item->id) }}"
+                                                        <a href="{{ route('sub.subcategory.soft-delete',$item->id) }}"
                                                             class="btn btn-danger"><i class="fa fa-trash"> </i>
                                                             Delete</a>
                                                     </td>
@@ -120,17 +120,18 @@
                                                     <td>{{ $item->subsubcat_name_bn }}</td>
                                                     <td>{{ $item->admin->name }}</td>
 
-                                                    <form action="{{ route('subcategory.restore') }}" method="POST">
+                                                    <form action="{{ route('sub.subcategory.restore') }}" method="POST">
                                                         @csrf
 
-                                                        <input type="hidden" name="subcategory_restore_id"
+                                                        <input type="hidden" name="subsubcategory_restore_id"
                                                             value="{{ $item->id }}">
+
                                                         <td><button class="btn btn-info">
                                                                 <i class="fa fa-undo"></i>
                                                                 Restore</button>
                                                     </form>
 
-                                                    <a href="{{ route('subcategory.delete',$item->id) }}"
+                                                    <a href="{{ route('sub.subcategory.delete',$item->id) }}"
                                                         class="btn btn-danger" id="deletePermanent"
                                                         onclick="return confirm('Are you sure you want to delete this item? Deleting this will result in removal of its dependant items');"><i
                                                             class=" fa fa-trash">
@@ -169,44 +170,12 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <form action="{{ route('sub.subcategory.add') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('sub.subcategory.add') }}" method="POST">
                             @csrf
 
                             <div class="row">
                                 <div class="col-12">
 
-                                    <div class="form-group">
-                                        <h5>Sub Subcategory Name (English) <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="text" name="subsubcategory_name_en" class="form-control"
-                                                required="" data-validation-required-message="This field is required"
-                                                value="">
-                                            <div class="help-block"></div>
-
-                                            @error('subsubcategory_name_en')
-                                            <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-
-                                        </div>
-
-
-
-                                    </div>
-
-                                    <div class="form-group">
-                                        <h5>Sub Subcategory Name (Bengali) <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="text" name="subsubcategory_name_bn" class="form-control"
-                                                required="" data-validation-required-message="This field is required"
-                                                value="">
-                                            <div class="help-block"></div>
-                                        </div>
-
-                                        @error('subsubcategory_name_bn')
-                                        <p class="text-danger">{{ $message }}</p>
-                                        @enderror
-
-                                    </div>
 
                                     <div class="form-group">
                                         <h5>Select Category<span class="text-danger">*</span></h5>
@@ -241,8 +210,41 @@
                                         @enderror
                                     </div>
 
+                                    <div class="form-group">
+                                        <h5>Sub Subcategory Name (English) <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <input type="text" name="subsubcategory_name_en" class="form-control"
+                                                required="" data-validation-required-message="This field is required"
+                                                value="">
+                                            <div class="help-block"></div>
+
+                                            @error('subsubcategory_name_en')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h5>Sub Subcategory Name (Bengali) <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <input type="text" name="subsubcategory_name_bn" class="form-control"
+                                                required="" data-validation-required-message="This field is required"
+                                                value="">
+                                            <div class="help-block"></div>
+                                        </div>
+
+                                        @error('subsubcategory_name_bn')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+
+                                    </div>
+
                                     <div class="d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-info mt-5">Add Subcategory</button>
+                                        <button type="submit" class="btn btn-info mt-5">Add Sub Subcategory</button>
                                     </div>
                         </form>
                     </div>
