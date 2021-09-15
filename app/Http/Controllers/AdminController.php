@@ -17,6 +17,8 @@ use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
+
 
 class AdminController extends Controller
 {
@@ -109,6 +111,10 @@ class AdminController extends Controller
 
     public function index()
     {
+        if (Auth::guard('web')->check()) {
+            return redirect()->back();
+        }
+
         return view('auth.adminLogin', ['guard' => 'admin']);
     }
 }

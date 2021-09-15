@@ -231,7 +231,7 @@
                                                 <div class="input-group"> <span class="input-group-addon">BDT</span>
                                                     <input type="number" name="sell_price" class="form-control" required
                                                         data-validation-required-message="This field is required">
-                                                    <span class="input-group-addon">.00</span> </div>
+                                                    <span class="input-group-addon"></span> </div>
                                                 @error('sell_price')
                                                 <p style="color: red"> <small>{{ $message }}</small> </p>
                                                 @enderror
@@ -246,7 +246,7 @@
                                                 <div class="input-group"> <span class="input-group-addon">BDT</span>
                                                     <input type="number" name="disc_price" class="form-control" required
                                                         data-validation-required-message="This field is required">
-                                                    <span class="input-group-addon">.00</span> </div>
+                                                    <span class="input-group-addon"></span> </div>
                                                 @error('disc_price')
                                                 <p style="color: red"> <small>{{ $message }}</small> </p>
                                                 @enderror

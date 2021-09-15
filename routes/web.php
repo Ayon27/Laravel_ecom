@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\CarouselController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubcategoryController;
@@ -32,7 +33,7 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     });
 
     //uses admin auth guard. for admins
-    Route::middleware(['auth:admin,admin'])->get('/admin/dashboard', function () {
+    Route::middleware(['auth:sanctum,admin'])->get('/admin/dashboard', function () {
         return view('admin.index');
     })->name('dashboard.admin');
 
@@ -89,6 +90,15 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::get('admin/product/delete/{id}', [ProductController::class, 'destroy'])->name('product.destroy'); //delete product
     Route::get('admin/product/image/delete/{id}', [ProductController::class, 'DeleteImage'])->name('product-image-delete'); //delete product image
     Route::get('admin/product/toggle/{id}', [ProductController::class, 'ToggleStatus'])->name('product.active.toggle'); //toggle product status
+
+    //Carousel Routes
+    Route::get('admin/carosuel/index', [CarouselController::class, 'index'])->name('carousel-index'); //lsit carousels
+    Route::post('admin/carosuel/add', [CarouselController::class, 'create'])->name('carousel-add'); //add a carousel
+    Route::get('admin/carosuel/toggle/{id}', [CarouselController::class, 'ToggleStatus'])->name('carousel-toggle'); //toggle carousel status
+    Route::get('admin/carosuel/edit/{id}', [CarouselController::class, 'edit'])->name('carousel-edit'); //edit carousel
+    Route::post('admin/carosuel/update', [CarouselController::class, 'update'])->name('c'); //edit carousel
+    Route::get('admin/carosuel/delete/{id}', [CarouselController::class, 'destroy'])->name('carousel-delete'); //delete carousel
+
 });
 
 

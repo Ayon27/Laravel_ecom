@@ -57,6 +57,14 @@
                 </ul>
             </li>
 
+
+
+
+            <li class=" {{ Request::route()->getName() == 'carousel-index' ? "active" : "" }}"><a
+                    href="{{ route('carousel-index') }}"><i class=""></i>&nbsp; Sliders</a></li>
+
+            </li>
+
             <li class="treeview">
                 <a href="#">
                     <i data-feather="file"></i>
