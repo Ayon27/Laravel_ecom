@@ -16,7 +16,6 @@
         <!-- Style-->
         <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/css/skin_color.css') }}">
-
         {{-- toastr js --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
             integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
@@ -61,10 +60,19 @@
     <script src="{{ asset('admin/js/template.js') }}"></script>
     <script src="{{ asset('admin/js/pages/dashboard.js') }}"></script>
 
-    <script src="{{ asset("../assets/vendor_components/datatable/datatables.min.js") }}"></script>
-    <script src="{{ asset("admin/js/pages/data-table.js") }}"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
+    <script src="{{ asset('admin/js/pages/data-table.js') }}"></script>
+    <script src="cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="{{ asset('../assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
+    <script src="{{ asset('../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('admin/js/pages/editor.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"
+        integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-angular.min.js"
+        integrity="sha512-KT0oYlhnDf0XQfjuCS/QIw4sjTHdkefv8rOJY5HHdNEZ6AmOh1DW/ZdSqpipe+2AEXym5D0khNu95Mtmw9VNKg=="
+        crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js">
     </script>

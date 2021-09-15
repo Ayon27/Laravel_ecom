@@ -75,14 +75,24 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::get('/admin/sub-subcategory/soft-delete/{id}', [Sub_subcategoryController::class, 'delete'])->name('sub.subcategory.soft-delete'); //sub-sub-category soft delete
     Route::post('/admin/sub-subcategory/restore', [Sub_subcategoryController::class, 'restore'])->name('sub.subcategory.restore'); //sub-subcategory restore
     Route::get('/admin/sub-subcategory/delete/{id}', [Sub_subcategoryController::class, 'destroy'])->name('sub.subcategory.delete'); //sub-subcategory destroy
+    Route::post('/admin/sub-subcategory/getsubsubcat/ajax/{subcategory_id}', [Sub_subcategoryController::class, 'getSubSubCategory'])->name('sub.subcategory.ajax.getsubcat'); //sub-sub-category add
 
 
     //product routes
-    Route::get('admin/product/view', [ProductController::class, 'AddProduct'])->name('add-product');
+    Route::get('admin/product/view', [ProductController::class, 'AddProduct'])->name('add-product'); //add a product
+    Route::post('admin/product/store', [ProductController::class, 'SaveProduct'])->name('save-product'); //save product
+    Route::get('admin/products/all', [ProductController::class, 'index'])->name('manage-product'); //view all products product.destroy
+    Route::get('admin/product/{id}', [ProductController::class, 'EditProduct'])->name('product.edit'); //edit product
+    Route::post('admin/product/update', [ProductController::class, 'UpdateProduct'])->name('product.update'); //update product
+    Route::post('admin/product/update-image', [ProductController::class, 'UpdateProductImage'])->name('product.update.image'); //update product images
+    Route::post('admin/product/update-thuimbnail', [ProductController::class, 'UpdateProductThumbnail'])->name('product.update.thumbnail'); //update product thumbnail
+    Route::get('admin/product/delete/{id}', [ProductController::class, 'destroy'])->name('product.destroy'); //delete product
+    Route::get('admin/product/image/delete/{id}', [ProductController::class, 'DeleteImage'])->name('product-image-delete'); //delete product image
+    Route::get('admin/product/toggle/{id}', [ProductController::class, 'ToggleStatus'])->name('product.active.toggle'); //toggle product status
 });
 
 
-\
+
 
 //User Routes
 // Route::middleware(['auth:sanctum,web', 'verified'])->get('/', function () { //uses web auth guard, for users

@@ -52,7 +52,8 @@
                 <ul class="treeview-menu">
                     <li class=" {{ Request::route()->getName() == 'add-product' ? "active" : "" }}"><a
                             href="{{ route('add-product') }}"><i class="ti-more"></i>Add Products</a></li>
-                    <li><a href="mailbox_compose.html"><i class="ti-more"></i>Manage Products</a></li>
+                    <li class=" {{ Request::route()->getName() == 'manage-product' ? "active" : "" }}"><a
+                            href="{{ route('manage-product') }}"><i class="ti-more"></i>Manage Products</a></li>
                 </ul>
             </li>
 

@@ -38,7 +38,7 @@ class AdminProfileController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'image' => 'mimes:png,jpg,jpeg'
+            'image' => 'mimes:png,jpg,jpeg|image|max:5000'
         ]);
 
         $admin = Admin::find(1);
