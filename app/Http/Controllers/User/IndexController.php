@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 
 class IndexController extends Controller
 {
     //
+
     public function __construct()
     {
         $this->middleware('isEmailVerified');
@@ -17,14 +20,6 @@ class IndexController extends Controller
 
     public function index()
     {
-        // $s = Auth::user()->id;
-
-        // $ss = User::find($s);
-
-        // echo $ss->email_verified_at === NULL;
-        // echo Auth::check();
-
-
         return view('user.index');
     }
 

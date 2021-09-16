@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\Sub_subcategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\IndexController;
+use App\Http\Controllers\User\LanguageController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\user\UserProfileController;
 use Illuminate\Support\Facades\Route;
@@ -145,3 +146,8 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::get('/forgot-password-sent', [IndexController::class, 'password_reset_redir'])->name('password.reset.sent'); //forgot password email
 
 });
+
+
+//Frontend Routes. No Auth Req
+Route::get('/lang-en', [LanguageController::class, 'English'])->name('lang.en');
+Route::get('/lang-bn', [LanguageController::class, 'Bengali'])->name('lang.bn');
