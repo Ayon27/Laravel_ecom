@@ -17,9 +17,7 @@ class SubSubCategory extends Model
         'category_id',
         'subcategory_id',
         'subsubcat_name_en',
-        'subsubcat_name_bn',
         'subsubcat_slug_en',
-        'subsubcat_slug_bn',
     ];
 
     public function admin()

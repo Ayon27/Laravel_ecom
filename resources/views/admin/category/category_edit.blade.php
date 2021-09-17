@@ -26,7 +26,7 @@
                             <div class="col-12">
 
                                 <div class="form-group">
-                                    <h5>Category Name (English) <span class="text-danger">*</span></h5>
+                                    <h5>Category Name <span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <input type="text" name="category_name_en" class="form-control" required=""
                                             data-validation-required-message="This field is required"
@@ -43,20 +43,6 @@
 
                                 </div>
 
-                                <div class="form-group">
-                                    <h5>Category Name (Bengali) <span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <input type="text" name="category_name_bn" class="form-control" required=""
-                                            data-validation-required-message="This field is required"
-                                            value="{{ $category->category_name_bn }}">
-                                        <div class="help-block"></div>
-                                    </div>
-
-                                    @error('category_name_bn')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-
-                                </div>
 
 
                                 <div class="d-flex justify-content-center">

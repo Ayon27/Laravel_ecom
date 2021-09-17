@@ -33,8 +33,7 @@
                                             role="grid" aria-describedby="example1_info">
                                             <thead>
                                                 <tr>
-                                                    <th>Category Name En</th>
-                                                    <th>Category Name Bn</th>
+                                                    <th>Category Name</th>
                                                     <th>Added By</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -43,7 +42,6 @@
                                                 @foreach ($categories as $item)
                                                 <tr role="row" class="odd">
                                                     <td class="sorting_1">{{ $item->category_name_en }}</td>
-                                                    <td>{{ $item->category_name_bn }}</td>
                                                     <td>{{ $item->admin->name }}</td>
                                                     <td><a href="{{ route('category.edit', $item->id) }}"
                                                             class="btn btn-info"> <i class="fa fa-pencil"></i>
@@ -72,6 +70,7 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">Deleted Categories <span class="badge badge-pill badge-danger">
                                 {{ count($categories_deleted) }} </span></h3>
+                        <a class="btn btn-danger float-right" href="{{ route('category.delete.all') }}">Delete All</a>
                     </div>
 
 
@@ -90,8 +89,7 @@
 
                                             <thead>
                                                 <tr>
-                                                    <th>Category Name En</th>
-                                                    <th>Category Name Bn</th>
+                                                    <th>Category Name</th>
                                                     <th>Added By</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -103,7 +101,6 @@
                                                 <tr role="row" class="odd">
                                                     <td class="sorting_1">{{ $item->category_name_en }}</td>
 
-                                                    <td>{{ $item->category_name_en }}</td>
 
                                                     <td>{{ $item->admin->name }}</td>
 
@@ -175,20 +172,6 @@
                                         </div>
 
 
-
-                                    </div>
-
-                                    <div class="form-group">
-                                        <h5>Category Name (Bengali) <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="text" name="category_name_bn" class="form-control" required=""
-                                                data-validation-required-message="This field is required" value="">
-                                            <div class="help-block"></div>
-                                        </div>
-
-                                        @error('category_name_bn')
-                                        <p class="text-danger">{{ $message }}</p>
-                                        @enderror
 
                                     </div>
 

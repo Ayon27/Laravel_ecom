@@ -63,31 +63,6 @@
                     <!-- /.list-unstyled -->
                 </div>
 
-                <div class="cnt-block">
-                    <ul class="list-styled list-inline">
-                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
-                                data-toggle="dropdown"><span class="value">Language</a>
-                            </span><b class="caret"></b></a>
-
-                            <ul class="dropdown-menu">
-                                <li name="English" style="margin-top: 1vh;}"><a href="{{ route('lang.en') }}">
-                                        <h5> &nbsp;
-                                            English</h5>
-                                    </a>
-                                </li>
-
-                                <li name="Bengali" style="margin-top: 1vh"><a href="{{ route('lang.bn') }}">
-                                        <h5>&nbsp;
-                                            বাংলা</h5>
-                                    </a></li>
-
-                            </ul>
-                        </li>
-
-
-                    </ul>
-                    <!-- /.list-unstyled -->
-                </div>
                 <!-- /.cnt-cart -->
                 <div class="clearfix"></div>
             </div>
@@ -202,8 +177,9 @@
                                 </li>
 
                                 @php
-                                $categories = App\Models\Category::select('id','category_name_en',
-                                'category_name_bn')->orderBy('category_name_en', 'ASC')->get();
+                                $categories =
+                                App\Models\Category::select('id','category_name_en')->orderBy('category_name_en',
+                                'ASC')->get();
                                 @endphp
 
                                 @foreach ($categories as $category)
@@ -216,8 +192,7 @@
                                                 <div class="row">
                                                     @php
                                                     $subcategories =
-                                                    App\Models\Subcategory::select('id','subcat_name_en',
-                                                    'subcat_name_bn')->where('category_id',
+                                                    App\Models\Subcategory::select('id','subcat_name_en')->where('category_id',
                                                     $category->id)->orderBy('subcat_name_en', 'ASC')->get();
                                                     @endphp
                                                     @foreach ($subcategories as $subcategory)
@@ -226,8 +201,7 @@
                                                         <h2 class="title">{{ $subcategory->subcat_name_en }}</h2>
                                                         @php
                                                         $subsubcategories =
-                                                        App\Models\SubSubCategory::select('id','subsubcat_name_en',
-                                                        'subsubcat_name_bn')->where('subcategory_id',
+                                                        App\Models\SubSubCategory::select('id','subsubcat_name_en')->where('subcategory_id',
                                                         $subcategory->id)->orderBy('subsubcat_name_en', 'ASC')->get();
                                                         @endphp
                                                         @foreach ($subsubcategories as $subsubcategory)

@@ -58,6 +58,8 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::get('/admin/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit'); //category edit
     Route::post('/admin/category/update', [CategoryController::class, 'update'])->name('category.update'); //category update
     Route::post('/admin/category/restore', [CategoryController::class, 'restore'])->name('category.restore'); //category restore
+    Route::get('/admin/category/delete-all', [CategoryController::class, 'DestroyAll'])->name('category.delete.all'); //category destroy all
+
 
     //sub category routes
     Route::get('/admin/sub-categories', [SubcategoryController::class, 'index'])->name('subcategory.all'); //sub-category index

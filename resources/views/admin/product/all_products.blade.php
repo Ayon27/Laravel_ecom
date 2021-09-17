@@ -35,8 +35,7 @@
                                                 <tr>
                                                     <th>Product Code</th>
                                                     <th style="width: 5%">Thumbnail</th>
-                                                    <th>Product Name En</th>
-                                                    <th>Product Name Bn</th>
+                                                    <th>Product Name</th>
                                                     <th>Category</th>
                                                     <th style="width: 5%">Subcategory</th>
                                                     <th>Sub-Subcategory</th>
@@ -56,7 +55,6 @@
                                                     <td><img src="{{ asset($item->product_thumbnail) }}" alt=""
                                                             class="img-thumbnail" style="width: 50px"></td>
                                                     <td class="sorting_1">{{ $item->product_name_en }}</td>
-                                                    <td>{{ $item->product_name_bn }}</td>
                                                     <td>{{ $item ['category']['category_name_en'] }}</td>
                                                     <td>{{ $item ['subcategory']['subcat_name_en'] }}</td>
                                                     <td>{{ $item ['subsubcategory']['subsubcat_name_en'] }}</td>

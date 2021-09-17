@@ -60,12 +60,10 @@ class Sub_subcategoryController extends Controller
 
         $request->validate([
             'subsubcategory_name_en' => 'required|max:200',
-            'subsubcategory_name_bn' => 'required|max:200',
             'category_id' => 'required',
             'subcategory_id' => 'required'
         ], [
             'subcategory_name_en.required' => 'Sub-subcategory name (English) is required',
-            'subcategory_name_bn.required' => 'Sub-subcategory name (Bengali) is required',
             'category_id.required' => 'Please select a category',
             'subcategory_id.required' => 'Please select a subcategory'
         ]);
@@ -77,9 +75,7 @@ class Sub_subcategoryController extends Controller
             $subsubcategory->category_id = $request->category_id;
             $subsubcategory->subcategory_id = $request->subcategory_id;
             $subsubcategory->subsubcat_name_en = $request->subsubcategory_name_en;
-            $subsubcategory->subsubcat_name_bn = $request->subsubcategory_name_bn;
             $subsubcategory->subsubcat_slug_en = strtolower(str_replace(' ', '-', $request->subsubcategory_name_en));
-            $subsubcategory->subsubcat_slug_bn = strtolower(str_replace(' ', '-', $request->subsubcategory_name_bn));
             $subsubcategory->created_at = Carbon::now();
 
             $this->store($subsubcategory);
@@ -166,12 +162,10 @@ class Sub_subcategoryController extends Controller
         //
         $request->validate([
             'subsubcategory_name_en' => 'required|max:200',
-            'subsubcategory_name_bn' => 'required|max:200',
             'category_id' => 'required',
             'subcategory_id' => 'required'
         ], [
             'subcategory_name_en.required' => 'Sub-subcategory name (English) is required',
-            'subcategory_name_bn.required' => 'Sub-subcategory name (Bengali) is required',
             'category_id.required' => 'Please select a category',
             'subcategory_id.required' => 'Please select a subcategory'
         ]);
@@ -184,9 +178,7 @@ class Sub_subcategoryController extends Controller
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'sububcat_name_en' => $request->subsubcategory_name_en,
-            'subsubcat_name_bn' => $request->subsubcategory_name_bn,
             'subsubcat_slug_en' => strtolower(str_replace(' ', '-', $request->subsubcategory_name_en)),
-            'subsubcat_slug_bn' => strtolower(str_replace(' ', '-', $request->subsubcategory_name_bn)),
             'updated_at' => Carbon::now()
         ]);
 

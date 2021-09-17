@@ -54,10 +54,8 @@ class CategoryController extends Controller
 
         $request->validate([
             'category_name_en' => 'required|max:200',
-            'category_name_bn' => 'required|max:200',
         ], [
             'category_name_en.required' => 'Category name (English) is required',
-            'category_name_bn.required' => 'Category name (Bengali) is required',
         ]);
 
 
@@ -67,9 +65,7 @@ class CategoryController extends Controller
 
             $category->admin_id = Auth::user()->id;
             $category->category_name_en = $request->category_name_en;
-            $category->category_name_bn = $request->category_name_bn;
             $category->category_slug_en = strtolower(str_replace(' ', '-', $request->category_name_en));
-            $category->category_slug_bn = strtolower(str_replace(' ', '-', $request->category_name_bn));
             $category->created_at = Carbon::now();
             $this->store($category);
 
@@ -145,10 +141,8 @@ class CategoryController extends Controller
         //
         $request->validate([
             'category_name_en' => 'required|max:200',
-            'category_name_bn' => 'required|max:200',
         ], [
             'category_name_en.required' => 'Category name (English) is required',
-            'category_name_bn.required' => 'Category name (Bengali) is required',
         ]);
 
         $id = $request->category_id;
@@ -157,9 +151,7 @@ class CategoryController extends Controller
 
             Category::find($id)->update([
                 'category_name_en' => $request->category_name_en,
-                'category_name_bn' => $request->category_name_bn,
                 'category_slug_en' => strtolower(str_replace(' ', '-', $request->category_name_en)),
-                'category_slug_bn' => strtolower(str_replace(' ', '-', $request->category_name_bn)),
                 'updated_at' => Carbon::now()
             ]);
 
@@ -246,6 +238,26 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             $notification = array(
                 'message' => 'Category restoration failed',
+                'alert-type' => 'error'
+            );
+        } finally {
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function DestroyAll()
+    {
+        # code...
+        try {
+            Category::onlyTrashed()->forceDelete();
+
+            $notification = array(
+                'message' => 'Successfully Deleted',
+                'alert-type' => 'success'
+            );
+        } catch (Exception $e) {
+            $notification = array(
+                'message' => 'Failed. An Error Occurred',
                 'alert-type' => 'error'
             );
         } finally {

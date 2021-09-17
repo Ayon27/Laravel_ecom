@@ -52,22 +52,17 @@ class ProductController extends Controller
             'subcategory_id' => 'required|numeric',
             'subsubcategory_id' => 'required|numeric',
             'product_name_en' => 'required|max:255',
-            'product_name_bn' => 'required|max:255',
             'product_code' => 'required|max:255|unique:products',
             'product_quantity' => 'required|numeric',
             'size_en' => 'required|max:255',
-            'size_bn' => 'required|max:255',
             'color_en' => 'required|max:255',
-            'color_bn' => 'required|max:255',
             'sell_price' => 'required|numeric',
             'disc_price' => 'required|numeric',
             'img' => 'required|image|mimes:png,jpg,jpeg|max:5000',
             'multi_img' => 'required',
             'multi_img.*' => 'mimes:jpeg,jpg,png|image|max:5000',
             'short_desc_en' => 'required|max:1000',
-            'short_desc_bn' => 'required|max:1000',
             'long_desc_en' => 'required|max:3000',
-            'long_desc_bn' => 'required|max:3000',
         ]);
 
         $product = new Product();
@@ -87,21 +82,15 @@ class ProductController extends Controller
             $product->subcategory_id = $request->subcategory_id;
             $product->subsubcategory_id = $request->subsubcategory_id;
             $product->product_name_en = $request->product_name_en;
-            $product->product_name_bn = $request->product_name_bn;
             $product->product_slug_en = strtolower(str_replace(' ', '-', $request->product_name_en));
-            $product->product_slug_bn = strtolower(str_replace(' ', '-', $request->product_name_bn));
             $product->product_code = $request->product_code;
             $product->quantity = $request->product_quantity;
             $product->product_size_en = $request->size_en;
-            $product->product_size_bn = $request->size_bn;
             $product->product_color_en = $request->color_en;
-            $product->product_color_bn = $request->color_bn;
             $product->product_actual_price = $request->sell_price;
             $product->product_discount_price = $request->disc_price;
             $product->short_desc_en = $request->short_desc_en;
-            $product->short_desc_bn = $request->short_desc_bn;
             $product->long_desc_en = $request->long_desc_en;
-            $product->long_desc_bn = $request->long_desc_bn;
             $product->product_thumbnail = $img_loc;
             $product->status = 1;
             $product->offer = $request->offer;
@@ -175,22 +164,17 @@ class ProductController extends Controller
             'subcategory_id' => 'required|numeric',
             'subsubcategory_id' => 'required|numeric',
             'product_name_en' => 'required|max:255',
-            'product_name_bn' => 'required|max:255',
             'product_code' => 'required|max:255|unique:products,product_code,' . $id . 'id',
             'product_quantity' => 'required|numeric',
             'size_en' => 'required|max:255',
-            'size_bn' => 'required|max:255',
             'color_en' => 'required|max:255',
-            'color_bn' => 'required|max:255',
             'sell_price' => 'required|numeric',
             'disc_price' => 'required|numeric',
             // 'img' => 'required|image|mimes:png,jpg,jpeg|max:5000',
             // 'multi_img' => 'required',
             // 'multi_img.*' => 'mimes:jpeg,jpg,png|image|max:5000',
             'short_desc_en' => 'required|max:1000',
-            'short_desc_bn' => 'required|max:1000',
             'long_desc_en' => 'required|max:3000',
-            'long_desc_bn' => 'required|max:3000',
         ]);
 
         try {
@@ -199,21 +183,15 @@ class ProductController extends Controller
                 'subcategory_id' => $request->subcategory_id,
                 'subsubcategory_id' => $request->subsubcategory_id,
                 'product_name_en' => $request->product_name_en,
-                'product_name_bn' => $request->product_name_bn,
                 'product_slug_en' => strtolower(str_replace(' ', '-', $request->product_name_en)),
-                'product_slug_bn' => strtolower(str_replace(' ', '-', $request->product_name_bn)),
                 'product_code' => $request->product_code,
                 'quantity' => $request->product_quantity,
                 'product_size_en' => $request->size_en,
-                'product_size_bn' => $request->size_bn,
                 'product_color_en' => $request->color_en,
-                'product_color_bn' => $request->color_bn,
                 'product_actual_price' => $request->sell_price,
                 'product_discount_price' => $request->disc_price,
                 'short_desc_en' => $request->short_desc_en,
-                'short_desc_bn' => $request->short_desc_bn,
                 'long_desc_en' => $request->long_desc_en,
-                'long_desc_bn' => $request->long_desc_bn,
                 'featured' => $request->featured,
                 'offer' => $request->offer,
                 'updated_at' => Carbon::now(),

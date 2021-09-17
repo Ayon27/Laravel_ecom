@@ -100,7 +100,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <h5>Product Name English <span class="text-danger">*</span></h5>
+                                                <h5>Product Name <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="product_name_en" class="form-control"
                                                         required
@@ -112,58 +112,31 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <h5>Product Name Bengali <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <input type="text" name="product_name_bn" class="form-control"
-                                                        required
-                                                        data-validation-required-message="This field is required">
-                                                </div>
-                                                @error('product_name_bn')
-                                                <p style="color: red"> <small>{{ $message }}</small> </p>
-                                                @enderror
-                                            </div>
-                                        </div>
 
                                     </div>
 
                                     <div class="row">
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-6">
 
                                             <div class="form-group">
-                                                <h5>Size English <span class="text-danger">*</span></h5>
+                                                <h5>Size<span class="text-danger">*</span></h5>
                                                 <div class="bootstrap-tagsinput">
                                                     <input data-role="tagsinput" type="text"
                                                         placeholder="Add Size in English (Comma separated)"
                                                         name="size_en" required></div>
-                                                @error('size_bn')
-                                                <p style="color: red"> <small>{{ $message }}</small> </p>
-                                                @enderror
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-3">
-
-                                            <div class="form-group">
-                                                <h5>Size Bengali<span class="text-danger">*</span></h5>
-                                                <div class="bootstrap-tagsinput">
-                                                    <input data-role="tagsinput" type="text"
-                                                        placeholder="Add Size in Bengali (Comma separated)" required
-                                                        name="size_bn">
-                                                </div>
-                                                @error('size_bn')
+                                                @error('size_en')
                                                 <p style="color: red"> <small>{{ $message }}</small> </p>
                                                 @enderror
                                             </div>
 
                                         </div>
 
+
                                         <div class="col-md-3">
 
                                             <div class="form-group">
-                                                <h5>Color Bengali<span class="text-danger">*</span></h5>
+                                                <h5>Color<span class="text-danger">*</span></h5>
                                                 <div class="bootstrap-tagsinput">
                                                     <input data-role="tagsinput" type="text"
                                                         placeholder="Add Color in Bengali (Comma separated)"
@@ -175,21 +148,6 @@
 
                                         </div>
 
-                                        <div class="col-md-3">
-
-                                            <div class="form-group">
-                                                <h5>Color Bengali<span class="text-danger">*</span></h5>
-                                                <div class="bootstrap-tagsinput">
-                                                    <input data-role="tagsinput" type="text"
-                                                        placeholder="Add Color in Bengali (Comma separated)"
-                                                        name="color_bn" required>
-                                                </div>
-                                                @error('color_bn')
-                                                <p style="color: red"> <small>{{ $message }}</small> </p>
-                                                @enderror
-                                            </div>
-
-                                        </div>
 
                                     </div>
 
@@ -301,10 +259,10 @@
 
                                     <div class="row">
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
 
                                             <div class="form-group">
-                                                <h5>Short Description English (1000 characters max)<span
+                                                <h5>Short Description (1000 characters max)<span
                                                         class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <textarea type="text" name="short_desc_en" id="short_desc"
@@ -317,33 +275,20 @@
 
                                         </div>
 
-                                        <div class="col-md-6">
 
-                                            <div class="form-group">
-                                                <h5>Short Description Bengali (1000 characters max)<span
-                                                        class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <textarea type="text" name="short_desc_bn" id="short_desc"
-                                                        class="form-control" required rows="5"> </textarea>
-                                                </div>
-                                                @error('short_desc_bn')
-                                                <p style="color: red"> <small>{{ $message }}</small> </p>
-                                                @enderror
-                                            </div>
 
-                                        </div>
 
                                     </div>
 
                                     <div class="row">
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
-                                                <h5>Long Description English (3000 characters max)<span
+                                                <h5>Long Description (3000 characters max)<span
                                                         class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <textarea id="editor1" name="long_desc_en" rows="10"
-                                                        cols="80"></textarea>
+                                                    <textarea id="editor1" name="long_desc_en" rows="20"
+                                                        required></textarea>
                                                 </div>
                                                 @error('long_desc_en')
                                                 <p style="color: red"> <small>{{ $message }}</small> </p>
@@ -351,19 +296,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <h5>Long Description Bengali (3000 characters max)<span
-                                                        class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <textarea id="editor2" name="long_desc_bn" rows="10"
-                                                        cols="80"></textarea>
-                                                </div>
-                                                @error('long_desc_bn')
-                                                <p style="color: red"> <small>{{ $message }}</small> </p>
-                                                @enderror
-                                            </div>
-                                        </div>
+
 
                                     </div>
 
@@ -374,7 +307,7 @@
                             </div>
 
                             <div class="row ml-1">
-                                <h5>Additional <span class="text-danger">*</span></h5>
+                                <h5>Additional <span class="text-danger"></span></h5>
                             </div>
 
                             <div class="row mt-5 ml-4">

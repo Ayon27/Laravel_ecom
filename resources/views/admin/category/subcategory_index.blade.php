@@ -34,8 +34,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Category Name </th>
-                                                    <th>Subcategory En</th>
-                                                    <th>Subcategory Bn</th>
+                                                    <th>Subcategory</th>
                                                     <th>Added By</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -46,7 +45,6 @@
                                                     <td class="sorting_1">{{ $item ['category'] ['category_name_en'] }}
                                                     </td>
                                                     <td>{{ $item->subcat_name_en }}</td>
-                                                    <td>{{ $item->subcat_name_bn }}</td>
 
 
                                                     <td>{{ $item->admin->name }}</td>
@@ -96,9 +94,8 @@
 
                                             <thead>
                                                 <tr>
-                                                    <th>Category Name </th>
-                                                    <th>Subcategory En</th>
-                                                    <th>Subcategory Bn</th>
+                                                    <th>Category Name</th>
+                                                    <th>Subcategory</th>
                                                     <th>Added By</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -112,7 +109,6 @@
                                                     </td>
                                                     <td>{{ $item->subcat_name_en }}</td>
 
-                                                    <td>{{ $item->subcat_name_en }}</td>
 
 
                                                     <td>{{ $item->admin->name }}</td>
@@ -193,7 +189,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <h5>Subcategory Name (English) <span class="text-danger">*</span></h5>
+                                        <h5>Subcategory Name <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="subcategory_name_en" class="form-control"
                                                 required="" data-validation-required-message="This field is required"
@@ -209,22 +205,6 @@
 
 
                                     </div>
-
-                                    <div class="form-group">
-                                        <h5>Subcategory Name (Bengali) <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="text" name="subcategory_name_bn" class="form-control"
-                                                required="" data-validation-required-message="This field is required"
-                                                value="">
-                                            <div class="help-block"></div>
-                                        </div>
-
-                                        @error('subcategory_name_bn')
-                                        <p class="text-danger">{{ $message }}</p>
-                                        @enderror
-
-                                    </div>
-
 
 
                                     <div class="d-flex justify-content-center">

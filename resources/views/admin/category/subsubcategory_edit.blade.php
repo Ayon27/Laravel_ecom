@@ -72,7 +72,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <h5>Sub Subcategory Name (English) <span class="text-danger">*</span></h5>
+                                    <h5>Sub Subcategory Name <span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <input type="text" name="subsubcategory_name_en" class="form-control"
                                             required="" data-validation-required-message="This field is required"
@@ -89,20 +89,7 @@
 
                                 </div>
 
-                                <div class="form-group">
-                                    <h5>Sub Subcategory Name (Bengali) <span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <input type="text" name="subsubcategory_name_bn" class="form-control"
-                                            required="" data-validation-required-message="This field is required"
-                                            value="{{ $subsubcat->subsubcat_name_bn }}">
-                                        <div class="help-block"></div>
-                                    </div>
 
-                                    @error('subsubcategory_name_bn')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-
-                                </div>
 
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="btn btn-info mt-5">Update</button>

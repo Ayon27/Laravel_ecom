@@ -17,9 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->integer('admin_id');
             $table->string('category_name_en');
-            $table->string('category_name_bn');
             $table->string('category_slug_en');
-            $table->string('category_slug_bn');
             $table->timestamps();
             $table->softDeletes();
         });
