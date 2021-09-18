@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\Sub_subcategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\IndexController;
-use App\Http\Controllers\User\LanguageController;
+use App\Http\Controllers\User\ProductDeatilsController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\user\UserProfileController;
 use Illuminate\Support\Facades\Route;
@@ -99,7 +99,7 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::post('admin/carosuel/add', [CarouselController::class, 'create'])->name('carousel-add'); //add a carousel
     Route::get('admin/carosuel/toggle/{id}', [CarouselController::class, 'ToggleStatus'])->name('carousel-toggle'); //toggle carousel status
     Route::get('admin/carosuel/edit/{id}', [CarouselController::class, 'edit'])->name('carousel-edit'); //edit carousel
-    Route::post('admin/carosuel/update', [CarouselController::class, 'update'])->name('c'); //edit carousel
+    Route::post('admin/carosuel/update', [CarouselController::class, 'update'])->name('carousel-update'); //edit carousel
     Route::get('admin/carosuel/delete/{id}', [CarouselController::class, 'destroy'])->name('carousel-delete'); //delete carousel
 
 });
@@ -111,10 +111,6 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
 // Route::middleware(['auth:sanctum,web', 'verified'])->get('/', function () { //uses web auth guard, for users
 //     return view('user.index');
 // })->name('dashboard');
-
-
-//home route. no auth required
-Route::get('/', [IndexController::class, 'index'])->name('home');
 
 //user auth routes
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/web/dashboard', [IndexController::class, 'loginRedir'])->name('dashboard');
@@ -151,5 +147,8 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
 
 
 //Frontend Routes. No Auth Req
-Route::get('/lang-en', [LanguageController::class, 'English'])->name('lang.en');
-Route::get('/lang-bn', [LanguageController::class, 'Bengali'])->name('lang.bn');
+//home route
+Route::get('/', [IndexController::class, 'index'])->name('home');
+
+//product details
+Route::get('/product/{slug}', [ProductDeatilsController::class, 'ShowProduct']);

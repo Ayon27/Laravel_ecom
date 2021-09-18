@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Carousel;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
@@ -20,7 +22,10 @@ class IndexController extends Controller
 
     public function index()
     {
-        return view('user.index');
+        $carousels = Carousel::latest()->where('status', 1)->get();
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $products = Product::with('images')->latest()->where('status', 1)->limit(15)->get();
+        return view('user.index', compact('carousels', 'categories', 'products'));
     }
 
     public function loginRedir()

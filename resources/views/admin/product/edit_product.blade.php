@@ -179,11 +179,10 @@
                                                     <input type="text" name="product_code" class="form-control" required
                                                         data-validation-required-message="This field is required"
                                                         value=" {{ $product->product_code }}">
-
-                                                    @error('product_code')
-                                                    <p style="color: red"> <small>{{ $message }}</small> </p>
-                                                    @enderror
                                                 </div>
+                                                @error('product_code')
+                                                <p style="color: red"> <small>{{ $message }}</small> </p>
+                                                @enderror
 
                                             </div>
                                         </div>

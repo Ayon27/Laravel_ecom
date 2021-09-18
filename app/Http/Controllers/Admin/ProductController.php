@@ -26,7 +26,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::latest()->get();
+        $products = Product::with('p')->latest()->get();
         return view('admin.product.all_products', compact('products'));
     }
 
@@ -51,8 +51,8 @@ class ProductController extends Controller
             'category_id' => 'required|numeric',
             'subcategory_id' => 'required|numeric',
             'subsubcategory_id' => 'required|numeric',
-            'product_name_en' => 'required|max:255',
-            'product_code' => 'required|max:255|unique:products',
+            'product_name_en' => 'required|max:255|unique:products,product_name_en',
+            'product_code' => 'required|max:255|unique:products,product_code',
             'product_quantity' => 'required|numeric',
             'size_en' => 'required|max:255',
             'color_en' => 'required|max:255',
@@ -63,6 +63,8 @@ class ProductController extends Controller
             'multi_img.*' => 'mimes:jpeg,jpg,png|image|max:5000',
             'short_desc_en' => 'required|max:1000',
             'long_desc_en' => 'required|max:3000',
+        ], [
+            'product_name_en.unique' => 'This Product Name Has Already Been Used Once. Please Use a Different Name',
         ]);
 
         $product = new Product();
@@ -163,18 +165,18 @@ class ProductController extends Controller
             'category_id' => 'required|numeric',
             'subcategory_id' => 'required|numeric',
             'subsubcategory_id' => 'required|numeric',
-            'product_name_en' => 'required|max:255',
-            'product_code' => 'required|max:255|unique:products,product_code,' . $id . 'id',
+            'product_name_en' => 'required|max:255|unique:products,product_name_en,' . $id . ',id',
+            'product_code' => 'required|max:255|unique:products,product_code,' . $id . ',id',
             'product_quantity' => 'required|numeric',
             'size_en' => 'required|max:255',
             'color_en' => 'required|max:255',
             'sell_price' => 'required|numeric',
             'disc_price' => 'required|numeric',
-            // 'img' => 'required|image|mimes:png,jpg,jpeg|max:5000',
-            // 'multi_img' => 'required',
-            // 'multi_img.*' => 'mimes:jpeg,jpg,png|image|max:5000',
             'short_desc_en' => 'required|max:1000',
             'long_desc_en' => 'required|max:3000',
+        ], [
+            'product_name_en.unique' => 'This Product Name Has Already Been Used Once. Please Use a Different Name',
+
         ]);
 
         try {
@@ -418,5 +420,20 @@ class ProductController extends Controller
         } finally {
             return redirect()->back()->with($notification);
         }
+    }
+
+    public function DestroyDependant($id, $attr_name)
+    {
+        $products = Product::where($attr_name, $id)->get();
+
+        foreach ($products as $product) {
+            unlink(public_path($product->product_thumbnail));
+            $prod_img = ProductImage::where('product_id', $product->id)->get();
+
+            foreach ($prod_img as $img) {
+                unlink(public_path($img->image_loc));
+            }
+        }
+        Product::where($attr_name, $id)->delete();
     }
 }

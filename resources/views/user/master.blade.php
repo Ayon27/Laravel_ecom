@@ -9,7 +9,7 @@
         <meta name="author" content="">
         <meta name="keywords" content="MediaCenter, Template, eCommerce">
         <meta name="robots" content="all">
-        <title>All-Out Vision Limited</title>
+        <title>@yield('page_title')</title>
 
         <!-- Bootstrap Core CSS -->
         {{-- <link rel="stylesheet" href="{{ asset('user/assets/css/bootstrap.min.css') }}"> --}}
@@ -78,19 +78,7 @@
         <!-- ============================================== HEADER : END ============================================== -->
 
 
-        <div class="breadcrumb">
-            <div class="container">
-                <div class="breadcrumb-inner">
-                    <ul class="list-inline list-unstyled">
-                        <li><a href="#">Home</a></li>
-                        <li class='active'>Handbags</li>
-                    </ul>
-                </div>
-                <!-- /.breadcrumb-inner -->
-            </div>
-            <!-- /.container -->
-        </div>
-        <!-- /.breadcrumb -->
+
 
 
         @yield('user.conent')

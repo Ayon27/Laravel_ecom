@@ -241,7 +241,11 @@ class Sub_subcategoryController extends Controller
 
     public function delete($id)
     {
+        $productController = new ProductController();
+
         try {
+            $productController->DestroyDependant($id, 'subsubcategory_id');
+
             $delete =  SubSubcategory::find($id)->delete();
 
             $notification = array(

@@ -1,78 +1,80 @@
-<header class="header-style-1" style="background: #071621">
+<div class="top-bar animate-dropdown" style="background:#071621">
+    <div class="container">
+        <div class="header-top-inner">
+            <div class="cnt-account">
 
-    <!-- ============================================== TOP MENU ============================================== -->
-    <div class="top-bar animate-dropdown">
-        <div class="container">
-            <div class="header-top-inner">
-                <div class="cnt-account">
-
-                    <ul class="list">
-                        <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
-                        <li><a href="#"><i class="fa fa-industry" aria-hidden="true"></i> Wholesale</a></li>
-                        <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a></li>
+                <ul class="list">
+                    <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
+                    <li><a href="#"><i class="fa fa-industry" aria-hidden="true"></i> Wholesale</a></li>
+                    <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a></li>
 
 
 
-                    </ul>
-                </div>
-                <!-- /.cnt-account -->
+                </ul>
+            </div>
+            <!-- /.cnt-account -->
 
-                <div class="cnt-block">
-                    <ul class="list-styled list-inline">
+            <div class="cnt-block">
+                <ul class="list-styled list-inline">
 
-                        @auth
+                    @auth
 
-                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
-                                data-toggle="dropdown"><span class="value"><i class="icon fa fa-user"></i> My
-                                    Account</a>
-                            </span><b class="caret"></b></a>
+                    <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
+                            data-toggle="dropdown"><span class="value"><i class="icon fa fa-user"></i> My
+                                Account</a>
+                        </span><b class="caret"></b></a>
 
-                            <ul class="dropdown-menu">
-                                <li name="account" style="margin-top: 1vh;}"><a href="{{ route('user.profile') }}">
-                                        <h5><i class="icon fa fa-user"></i> &nbsp;
-                                            Manage Profile</h5>
-                                    </a>
-                                </li>
-                                <li name="account" style="margin-top: 1vh"><a href="#">
-                                        <h5><i class="icon fa fa-list"></i> &nbsp;
-                                            View Orders</h5>
-                                    </a></li>
+                        <ul class="dropdown-menu">
+                            <li name="account" style="margin-top: 1vh;}"><a href="{{ route('user.profile') }}">
+                                    <h5><i class="icon fa fa-user"></i> &nbsp;
+                                        Manage Profile</h5>
+                                </a>
+                            </li>
+                            <li name="account" style="margin-top: 1vh"><a href="#">
+                                    <h5><i class="icon fa fa-list"></i> &nbsp;
+                                        View Orders</h5>
+                                </a></li>
 
-                                <li name="account" style="margin-top: 1vh">
-                                    <a href="{{ route('user.logout') }}">
-                                        <h5><i class="icon fa fa-sign-out"></i> &nbsp;
-                                            Sign Out</h5>
-                                    </a>
-                                    </form>
-
-                                </li>
-
+                            <li name="account" style="margin-top: 1vh">
+                                <a href="{{ route('user.logout') }}">
+                                    <h5><i class="icon fa fa-sign-out"></i> &nbsp;
+                                        Sign Out</h5>
+                                </a>
                                 </form>
 
-                            </ul>
-                        </li>
-                        @else
-                        <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
-                                <strong style="color: white">Login</strong> </a></li> |
-                        <li><a href="{{ route('register') }}"><i class="icon fa fa-lock"></i> <strong
-                                    style="color: white"> Register</strong></a></li>
-                        @endauth
+                            </li>
 
-                    </ul>
+                            </form>
 
-                    <!-- /.list-unstyled -->
-                </div>
+                        </ul>
+                    </li>
+                    @else
+                    <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
+                            <strong style="color: white">Login</strong> </a></li> |
+                    <li><a href="{{ route('register') }}"><i class="icon fa fa-lock"></i> <strong style="color: white">
+                                Register</strong></a></li>
+                    @endauth
 
-                <!-- /.cnt-cart -->
-                <div class="clearfix"></div>
+                </ul>
+
+                <!-- /.list-unstyled -->
             </div>
-            <!-- /.header-top-inner -->
+
+            <!-- /.cnt-cart -->
+            <div class="clearfix"></div>
         </div>
-        <!-- /.container -->
+        <!-- /.header-top-inner -->
     </div>
+    <!-- /.container -->
+</div>
+
+<header class="header-style-1" style="background: #071621;position:sticky;top:0;width:100%;z-index:100;">
+
+    <!-- ============================================== TOP MENU ============================================== -->
+
     <!-- /.header-top -->
     <!-- ============================================== TOP MENU : END ============================================== -->
-    <div class="main-header">
+    <div class="main-header" style="">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
@@ -84,13 +86,13 @@
                 </div>
                 <!-- /.logo-holder -->
 
-                <div class="col-xs-12 col-sm-12 col-md-7 top-search-holder">
+                <div class="col-xs-12 col-sm-12 col-md-5 top-search-holder">
                     <!-- /.contact-row -->
                     <!-- ============================================================= SEARCH AREA ============================================================= -->
                     <div class="search-area">
                         <form>
                             <div class="control-group">
-                                <input class="search-field" placeholder="Search here..." />
+                                <input class="search-field" placeholder="Search" autocomplete="off" />
                                 <a class="search-button" href="#"></a>
                             </div>
                         </form>
@@ -100,7 +102,7 @@
                 </div>
                 <!-- /.top-search-holder -->
 
-                <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
+                <div class="col-xs-12 col-sm-12 col-md-4 animate-dropdown top-cart-row">
                     <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
 
                     <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart"
@@ -159,7 +161,7 @@
     <!-- /.main-header -->
 
     <!-- ============================================== NAVBAR ============================================== -->
-    <div class="header-nav animate-dropdown" style="background: #847d7d">
+    <div class="header-nav animate-dropdown" style="background: #847d7d;">
         <div class="container">
             <div class="yamm navbar navbar-default " role="navigation">
                 <div class="navbar-header">
@@ -172,8 +174,7 @@
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw"> <a href="{{ route('home') }}" data-hover="dropdown"
-                                        class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                <li class="active dropdown yamm-fw"> <a href="{{ route('home') }}">Home</a>
                                 </li>
 
                                 @php

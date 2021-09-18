@@ -106,7 +106,7 @@
                                 <div class="col-12">
 
                                     <div class="form-group">
-                                        <h5>Image Title<span class="text-danger"></span></h5>
+                                        <h5>Image Title (100 characters max)<span class="text-danger"></span></h5>
                                         <div class="controls">
                                             <input type="text" name="title" class="form-control">
                                             <div class="help-block"></div>

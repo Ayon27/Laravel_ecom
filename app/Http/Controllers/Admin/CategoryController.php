@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\Sub_subcategoryController;
 use App\Http\Controllers\Controller;
@@ -53,7 +54,8 @@ class CategoryController extends Controller
         //
 
         $request->validate([
-            'category_name_en' => 'required|max:200',
+            'category_name_en' => 'required|max:200|unique:categories,category_name_en',
+
         ], [
             'category_name_en.required' => 'Category name (English) is required',
         ]);
@@ -139,13 +141,14 @@ class CategoryController extends Controller
     public function update(Request $request)
     {
         //
+        $id = $request->category_id;
+
         $request->validate([
-            'category_name_en' => 'required|max:200',
+            'category_name_en' => 'required|max:200|unique:categories,category_name_en,' . $id . ',id',
         ], [
             'category_name_en.required' => 'Category name (English) is required',
         ]);
 
-        $id = $request->category_id;
 
         try {
 
@@ -202,8 +205,9 @@ class CategoryController extends Controller
     {
         $subcategoryController =  new SubcategoryController();
         $sub_subcategoryController =  new Sub_subcategoryController();
+        $productController = new ProductController();
         try {
-
+            $productController->DestroyDependant($id, 'category_id');
             $sub_subcategoryController->deleteDependantCat($id);
             $subcategoryController->deleteDependant($id);
 

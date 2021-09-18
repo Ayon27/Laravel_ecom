@@ -159,11 +159,10 @@
                                                     <input type="text" name="product_code" class="form-control" required
                                                         data-validation-required-message="This field is required">
 
-                                                    @error('product_code')
-                                                    <p style="color: red"> <small>{{ $message }}</small> </p>
-                                                    @enderror
                                                 </div>
-
+                                                @error('product_code')
+                                                <p style="color: red"> <small>{{ $message }}</small> </p>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -376,7 +375,7 @@ alert('danger');
 }
 });
 
-$('#select_subcategory').on('change', function(){
+$('#select_subcategory').on('click', function(){
         var subcategory_id = $('#select_subcategory').val();
         if(subcategory_id ) {
         $.ajax({
@@ -394,7 +393,7 @@ $('#select_subcategory').on('change', function(){
         },
         });
         } else {
-        alert('danger');
+        alert('No Subcategory Found. Please Add Some First!');
         }
         });
 });

@@ -30,10 +30,9 @@ class CarouselController extends Controller
      */
     public function create(Request $request)
     {
-        //
         $request->validate([
-            'title' => 'max:255',
-            'description' => 'max:1500',
+            'title' => 'max:50',
+            'description' => 'max:255',
             'carousel_image' => 'required|image|mimes:png,jpg,jpeg|max:5120'
         ], [
             'carousel_image.image' => 'The file must be an image of type jpg/png/jpeg',
@@ -108,6 +107,14 @@ class CarouselController extends Controller
     public function update(Request $request)
     {
         //
+        $request->validate([
+            'title' => 'max:50',
+            'description' => 'max:255',
+            'carousel_image' => 'image|mimes:png,jpg,jpeg|max:5120'
+        ], [
+            'carousel_image.image' => 'The file must be an image of type jpg/png/jpeg',
+            'carousel_image.max' => 'The file size must not exceed 5MB',
+        ]);
         $id = $request->carousel_id;
         try {
             $carousel = Carousel::findOrFail($id);
