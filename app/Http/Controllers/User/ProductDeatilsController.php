@@ -15,16 +15,12 @@ class ProductDeatilsController extends Controller
     public function ShowProduct($slug)
     {
         try {
-            $product = Product::where('product_slug_en', '=', $slug)->first();
+            $product = Product::where([['product_slug_en', '=', $slug], ['status', '=', '1']])->first();
             $product_id = $product->id;
-            $prod_imgs = ProductImage::where('product_id', $product_id)->get();
-            return view('user.product.product_details', compact('product', 'prod_imgs'));
+
+            return view('user.product.product_details', compact('product'));
         } catch (Exception $e) {
-            $notification = array(
-                'message' => 'An Unexpected Error Occurred',
-                'alert-type' => 'error'
-            );
-            return redirect()->back()->with($notification);
+            return abort(404);
         }
     }
 }

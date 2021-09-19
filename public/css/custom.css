@@ -1,0 +1,8 @@
+/* #prod-details-main-img {
+    display: none !important;
+} */
+@media (max-width: 480px) {
+    #prod-details-main-img {
+        display: none;
+    }
+}

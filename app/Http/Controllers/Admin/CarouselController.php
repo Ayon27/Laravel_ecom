@@ -43,8 +43,8 @@ class CarouselController extends Controller
 
         try {
             $image = $request->file('carousel_image');
-            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(1920, 1080)->save(public_path('uploads/carousel/') . $name_gen);
+            $name_gen = hexdec(uniqid()) . '.webp';
+            Image::make($image)->resize(1920, 1080)->encode('webp', 50)->save(public_path('uploads/carousel/') . $name_gen);
             $img_loc = 'uploads/carousel/' . $name_gen;
 
             $carousel = new Carousel();
@@ -124,8 +124,8 @@ class CarouselController extends Controller
                 unlink(public_path($carousel->carousel_image));
 
                 $image = $request->file('carousel_image');
-                $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                Image::make($image)->resize(1920, 1080)->save(public_path('uploads/carousel/') . $name_gen);
+                $name_gen = hexdec(uniqid()) . '.webp';
+                Image::make($image)->resize(1920, 1080)->encode('webp', 50)->save(public_path('uploads/carousel/') . $name_gen);
                 $img_loc = 'uploads/carousel/' . $name_gen;
             }
 

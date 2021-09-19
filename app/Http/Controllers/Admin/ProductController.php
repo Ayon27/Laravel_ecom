@@ -23,10 +23,9 @@ class ProductController extends Controller
         $this->middleware('prevent-back-button');
         $this->middleware('XssSanitizer');
     }
-
     public function index()
     {
-        $products = Product::with('p')->latest()->get();
+        $products = Product::with('images')->latest()->get();
         return view('admin.product.all_products', compact('products'));
     }
 
@@ -73,8 +72,8 @@ class ProductController extends Controller
 
             //single image process
             $image = $request->file('img');
-            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(2000, 2000)->save(public_path('uploads/products/thumbnails/') . $name_gen);
+            $name_gen = hexdec(uniqid()) . '.webp';
+            Image::make($image)->resize(1000, 1000)->encode('webp', 50)->save(public_path('uploads/products/thumbnails/') . $name_gen);
             $img_loc = 'uploads/products/thumbnails/' . $name_gen;
 
 
@@ -106,8 +105,8 @@ class ProductController extends Controller
             $images = $request->file('multi_img');
 
             foreach ($images as $img) {
-                $name_gen_mult = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
-                Image::make($img)->resize(2000, 2000)->save(public_path('uploads/products/product_images/') . $name_gen_mult);
+                $name_gen_mult = hexdec(uniqid()) . '.webp';
+                Image::make($img)->resize(1000, 1000)->encode('webp', 50)->save(public_path('uploads/products/product_images/') . $name_gen_mult);
                 $img_loc_mult = 'uploads/products/product_images/' . $name_gen_mult;
 
 
@@ -238,8 +237,8 @@ class ProductController extends Controller
                     $img_to_delete = ProductImage::findOrFail($id);
                     unlink(public_path($img_to_delete->image_loc));
 
-                    $name_gen_mult = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
-                    Image::make($img)->resize(2000, 2000)->save(public_path('uploads/products/product_images/') . $name_gen_mult);
+                    $name_gen_mult = hexdec(uniqid()) . '.webp';
+                    Image::make($img)->resize(1000, 1000)->encode('webp', 50)->save(public_path('uploads/products/product_images/') . $name_gen_mult);
                     $img_loc_mult = 'uploads/products/product_images/' . $name_gen_mult;
 
                     ProductImage::where('id', $id)->update([
@@ -268,8 +267,8 @@ class ProductController extends Controller
                 $images = $request->file('multi_img_new');
 
                 foreach ($images as $img) {
-                    $name_gen_mult = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
-                    Image::make($img)->resize(2000, 2000)->save(public_path('uploads/products/product_images/') . $name_gen_mult);
+                    $name_gen_mult = hexdec(uniqid()) . '.webp';
+                    Image::make($img)->resize(1000, 1000)->encode('webp', 50)->save(public_path('uploads/products/product_images/') . $name_gen_mult);
                     $img_loc_mult = 'uploads/products/product_images/' . $name_gen_mult;
 
 
@@ -309,8 +308,8 @@ class ProductController extends Controller
             ]);
 
             $image = $request->file('thumbnail');
-            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(2000, 2000)->save(public_path('uploads/products/thumbnails/') . $name_gen);
+            $name_gen = hexdec(uniqid()) . '.webp';
+            Image::make($image)->resize(1000, 1000)->encode('webp', 50)->save(public_path('uploads/products/thumbnails/') . $name_gen);
             $img_loc = 'uploads/products/thumbnails/' . $name_gen;
 
             try {

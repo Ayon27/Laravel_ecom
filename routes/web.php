@@ -83,7 +83,7 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
 
 
     //product routes
-    Route::get('admin/product/view', [ProductController::class, 'AddProduct'])->name('add-product'); //add a product
+    Route::get('admin/product/add', [ProductController::class, 'AddProduct'])->name('add-product'); //add a product
     Route::post('admin/product/store', [ProductController::class, 'SaveProduct'])->name('save-product'); //save product
     Route::get('admin/products/all', [ProductController::class, 'index'])->name('manage-product'); //view all products product.destroy
     Route::get('admin/product/{id}', [ProductController::class, 'EditProduct'])->name('product.edit'); //edit product

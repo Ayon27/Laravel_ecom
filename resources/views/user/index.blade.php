@@ -14,7 +14,9 @@
 
                 <div id="hero" class="" style="">
                     <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm" style="height: 60vh">
+
                         @foreach ($carousels as $carousel)
+
                         <div class="item"
                             style="background-image: url({{ asset($carousel->carousel_image) }}) ;height:60vh">
                             <div class="container-fluid">

@@ -24,7 +24,7 @@ class IndexController extends Controller
     {
         $carousels = Carousel::latest()->where('status', 1)->get();
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
-        $products = Product::with('images')->latest()->where('status', 1)->limit(15)->get();
+        $products = Product::latest()->where('status', 1)->limit(15)->get();
         return view('user.index', compact('carousels', 'categories', 'products'));
     }
 
