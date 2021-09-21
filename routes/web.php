@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\Sub_subcategoryController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\user\CategoryController as UserCategoryController;
 use App\Http\Controllers\User\IndexController;
 use App\Http\Controllers\User\ProductDeatilsController;
 use App\Http\Controllers\user\UserController;
@@ -150,5 +151,6 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
 //home route
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
-//product details
-Route::get('/product/{slug}', [ProductDeatilsController::class, 'ShowProduct']);
+//product details subsubcategory-all-products
+Route::get('/product/{slug}', [ProductDeatilsController::class, 'ShowProduct'])->name('single-product'); //single product page
+Route::get('/{slug}', [UserCategoryController::class, 'AllProducts'])->name('category-all-products');

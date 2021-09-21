@@ -33,8 +33,9 @@
                                             role="grid" aria-describedby="example1_info">
                                             <thead>
                                                 <tr>
+                                                    <th>#</th>
                                                     <th>Product Code</th>
-                                                    <th style="width: 5%">Thumbnail</th>
+                                                    <th style="width: 4%">Thumbnail</th>
                                                     <th>Product Name</th>
                                                     <th>Category</th>
                                                     <th style="width: 5%">Subcategory</th>
@@ -49,12 +50,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @php
+                                                $i = 0;
+                                                @endphp
                                                 @foreach ($products as $item)
                                                 <tr role="row" class="odd">
+                                                    <td>{{ ++$i }}</td>
                                                     <td>{{ $item->product_code }}</td>
                                                     <td><img src="{{ asset($item->product_thumbnail) }}" alt=""
                                                             class="img-thumbnail" style="width: 50px"></td>
-                                                    <td class="sorting_1">{{ $item->product_name_en }}</td>
+                                                    <td class="">{{ $item->product_name_en }}</td>
                                                     <td>{{ $item ['category']['category_name_en'] }}</td>
                                                     <td>{{ $item ['subcategory']['subcat_name_en'] }}</td>
                                                     <td>{{ $item ['subsubcategory']['subsubcat_name_en'] }}</td>

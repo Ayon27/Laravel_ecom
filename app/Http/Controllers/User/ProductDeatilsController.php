@@ -16,9 +16,17 @@ class ProductDeatilsController extends Controller
     {
         try {
             $product = Product::where([['product_slug_en', '=', $slug], ['status', '=', '1']])->first();
-            $product_id = $product->id;
+            $category_id = $product->category_id;
 
-            return view('user.product.product_details', compact('product'));
+            $colors = $product->product_color_en;
+            $product_color_en = explode(',', $colors);
+
+            $sizes = $product->product_size_en;
+            $product_size_en = explode(',', $sizes);
+
+            $related_products = Product::where('category_id', $category_id)->orderBy('id', 'DESC')->limit(8)->get();
+
+            return view('user.product.product_details', compact('product', 'product_color_en', 'product_size_en', 'related_products'));
         } catch (Exception $e) {
             return abort(404);
         }

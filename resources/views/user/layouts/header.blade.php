@@ -179,14 +179,15 @@
 
                                 @php
                                 $categories =
-                                App\Models\Category::select('id','category_name_en')->with('subcategory',
+                                App\Models\Category::select('id','category_name_en',
+                                'category_slug_en')->with('subcategory',
                                 'subsubcategory')->orderBy('category_name_en',
                                 'ASC')->get();
                                 @endphp
-                                {{-- $categories = Category::select('id','category_name_en')->with('subcategory', 'subsubcategory')->orderBy('category_name_en', 'ASC')->get(); --}}
                                 @foreach ($categories as $category)
-                                <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown"
-                                        class="dropdown-toggle"
+                                <li class="dropdown yamm mega-menu"> <a
+                                        href="{{ route('category-all-products', $category->category_slug_en) }}"
+                                        target="__blank" data-hover="dropdown" class="dropdown-toggle"
                                         data-toggle="dropdown">{{ $category->category_name_en }}</a>
                                     <ul class="dropdown-menu container">
                                         <li>
@@ -196,13 +197,16 @@
                                                     @foreach ($category['subcategory'] as $subcategory)
 
                                                     <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                                        <h2 class="title">{{ $subcategory->subcat_name_en }}</h2>
+                                                        <a href="">
+                                                            <h2 class="title">{{ $subcategory->subcat_name_en }}</h2>
+                                                        </a>
 
                                                         @foreach ($category['subsubcategory'] as $subsubcategory)
                                                         @if ($subsubcategory->subcategory_id == $subcategory->id)
                                                         <ul class="links">
-                                                            <li><a href="#">{{ $subsubcategory->subsubcat_name_en }}</a>
-                                                            </li>
+                                                            <a href="">
+                                                                <li>{{ $subsubcategory->subsubcat_name_en }} </li>
+                                                            </a>
                                                         </ul>
                                                         @endif
 
