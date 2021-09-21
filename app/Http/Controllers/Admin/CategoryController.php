@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         //
         try {
-            $categories = Category::latest()->get();
+            $categories = Category::with('subcategory', 'admin')->latest()->get();
 
             $categories_deleted =  Category::onlyTrashed()->latest()->get();
 

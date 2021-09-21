@@ -21,4 +21,14 @@ class Category extends Model
     {
         return $this->hasOne(Admin::class, 'id', 'admin_id');
     }
+
+    public function subcategory()
+    {
+        return $this->hasMany(Subcategory::class);
+    }
+
+    public function subsubcategory()
+    {
+        return $this->hasMany(SubSubCategory::class);
+    }
 }

@@ -23,9 +23,10 @@ class ProductController extends Controller
         $this->middleware('prevent-back-button');
         $this->middleware('XssSanitizer');
     }
+
     public function index()
     {
-        $products = Product::with('images')->latest()->get();
+        $products = Product::with('images', 'category', 'subcategory', 'subsubcategory')->latest()->get();
         return view('admin.product.all_products', compact('products'));
     }
 

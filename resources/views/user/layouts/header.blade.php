@@ -179,10 +179,11 @@
 
                                 @php
                                 $categories =
-                                App\Models\Category::select('id','category_name_en')->orderBy('category_name_en',
+                                App\Models\Category::select('id','category_name_en')->with('subcategory',
+                                'subsubcategory')->orderBy('category_name_en',
                                 'ASC')->get();
                                 @endphp
-
+                                {{-- $categories = Category::select('id','category_name_en')->with('subcategory', 'subsubcategory')->orderBy('category_name_en', 'ASC')->get(); --}}
                                 @foreach ($categories as $category)
                                 <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown"
                                         class="dropdown-toggle"
@@ -191,21 +192,13 @@
                                         <li>
                                             <div class="yamm-content ">
                                                 <div class="row">
-                                                    @php
-                                                    $subcategories =
-                                                    App\Models\Subcategory::select('id','subcat_name_en')->where('category_id',
-                                                    $category->id)->orderBy('subcat_name_en', 'ASC')->get();
-                                                    @endphp
-                                                    @foreach ($subcategories as $subcategory)
+
+                                                    @foreach ($category['subcategory'] as $subcategory)
 
                                                     <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                                                         <h2 class="title">{{ $subcategory->subcat_name_en }}</h2>
-                                                        @php
-                                                        $subsubcategories =
-                                                        App\Models\SubSubCategory::select('id','subsubcat_name_en')->where('subcategory_id',
-                                                        $subcategory->id)->orderBy('subsubcat_name_en', 'ASC')->get();
-                                                        @endphp
-                                                        @foreach ($subsubcategories as $subsubcategory)
+
+                                                        @foreach ($category['subsubcategory'] as $subsubcategory)
 
                                                         <ul class="links">
                                                             <li><a href="#">{{ $subsubcategory->subsubcat_name_en }}</a>

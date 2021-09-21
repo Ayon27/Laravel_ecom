@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\SubSubCategory;
-use Exception;
-
+use Throwable;
 
 class Sub_subcategoryController extends Controller
 {
@@ -35,12 +34,12 @@ class Sub_subcategoryController extends Controller
         try {
             $categories = Category::latest()->orderBy('category_name_en', 'ASC')->get();
             $subcats = Subcategory::latest()->get();
-            $subsubcats =  SubSubCategory::latest()->get();
+            $subsubcats =  SubSubCategory::with('category', 'subcategory', 'admin')->latest()->get();
             $subsubcats_deleted =  SubSubCategory::onlyTrashed()->get();
 
 
             return view('admin.category.subsubcategory_index', compact('categories', 'subcats', 'subsubcats', 'subsubcats_deleted'));
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $notification = array(
                 'message' => 'Failed to load page',
                 'alert-type' => 'error'
@@ -84,7 +83,7 @@ class Sub_subcategoryController extends Controller
                 'message' => 'Successfully added Sub-subcategory',
                 'alert-type' => 'success'
             );
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
 
             $notification = array(
                 'message' => 'Failed to add Sub-subcategory',
@@ -141,7 +140,7 @@ class Sub_subcategoryController extends Controller
 
 
             return view('admin.category.subsubcategory_edit', compact('categories', 'subcats', 'subsubcat'));
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $notification = array(
                 'message' => 'Operation Failed',
                 'alert-type' => 'error'
@@ -172,30 +171,30 @@ class Sub_subcategoryController extends Controller
 
         $id = $request->subsubcat_id;
 
-        // try {
+        try {
 
-        SubSubcategory::find($id)->update([
-            'category_id' => $request->category_id,
-            'subcategory_id' => $request->subcategory_id,
-            'sububcat_name_en' => $request->subsubcategory_name_en,
-            'subsubcat_slug_en' => strtolower(str_replace(' ', '-', $request->subsubcategory_name_en)),
-            'updated_at' => Carbon::now()
-        ]);
+            SubSubcategory::find($id)->update([
+                'category_id' => $request->category_id,
+                'subcategory_id' => $request->subcategory_id,
+                'subsubcat_name_en' => $request->subsubcategory_name_en,
+                'subsubcat_slug_en' => strtolower(str_replace(' ', '-', $request->subsubcategory_name_en)),
+                'updated_at' => Carbon::now()
+            ]);
 
-        $notification = array(
-            'message' => 'Subcategory Updated Successfully!',
-            'alert-type' => 'success'
-        );
+            $notification = array(
+                'message' => 'Subcategory Updated Successfully!',
+                'alert-type' => 'success'
+            );
 
-        return redirect()->route('sub.subcategory.all')->with($notification);
-        // } catch (Exception $e) {
-        //     $notification = array(
-        //         'message' => 'Failed to Update!',
-        //         'alert-type' => 'error'
-        //     );
+            return redirect()->route('sub.subcategory.all')->with($notification);
+        } catch (\Throwable  $e) {
+            $notification = array(
+                'message' => 'Failed to Update!',
+                'alert-type' => 'error'
+            );
 
-        //     return redirect()->route('subcategory.all')->with($notification);
-        // }
+            return redirect()->route('subcategory.all')->with($notification);
+        }
     }
 
     /**
@@ -214,7 +213,7 @@ class Sub_subcategoryController extends Controller
                 'message' => 'Category deleted permanently',
                 'alert-type' => 'success'
             );
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
 
             $notification = array(
                 'message' => 'Failed',
@@ -252,7 +251,7 @@ class Sub_subcategoryController extends Controller
                 'message' => 'Sub-Subcategory successfully deleted',
                 'alert-type' => 'success'
             );
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
 
             $notification = array(
                 'message' => 'Sub-Subcategory successfully deleted',
@@ -273,7 +272,7 @@ class Sub_subcategoryController extends Controller
                 'message' => 'Sub-Subategory successfully restored',
                 'alert-type' => 'success'
             );
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $notification = array(
                 'message' => 'Sub-Subategory restoration failed',
                 'alert-type' => 'error'
@@ -290,7 +289,7 @@ class Sub_subcategoryController extends Controller
         try {
             SubSubcategory::where('subcategory_id', '=', $subcategory_id)->delete();
             SubSubcategory::onlyTrashed()->where('subcategory_id', '=', $subcategory_id)->forceDelete();
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
         } finally {
             return;
         }
@@ -303,7 +302,7 @@ class Sub_subcategoryController extends Controller
         try {
             SubSubcategory::where('category_id', '=', $category_id)->delete();
             SubSubcategory::onlyTrashed()->where('category_id', '=', $category_id)->forceDelete();
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
         } finally {
             return;
         }

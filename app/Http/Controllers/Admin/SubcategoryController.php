@@ -29,12 +29,11 @@ class SubcategoryController extends Controller
     public function index()
     {
         //
-        $categories = Category::latest()->orderBy('category_name_en', 'ASC')->get();
-        $subcats = Subcategory::latest()->get();
-        $subcats_deleted =  Subcategory::onlyTrashed()->latest()->get();
+        $subcats = Subcategory::with('category', 'admin')->latest()->get();
+        $subcats_deleted =  Subcategory::onlyTrashed()->with('category')->latest()->get();
+        $categories = Category::select('id', 'category_name_en')->orderBy('category_name_en', 'ASC')->get();
 
-
-        return view('admin.category.subcategory_index', compact('subcats', 'categories', 'subcats_deleted'));
+        return view('admin.category.subcategory_index', compact('subcats', 'subcats_deleted', 'categories'));
     }
 
     /**
@@ -42,6 +41,7 @@ class SubcategoryController extends Controller
      *s
      * @return \Illuminate\Http\Response
      */
+
     public function create(Request $request)
     {
         //
