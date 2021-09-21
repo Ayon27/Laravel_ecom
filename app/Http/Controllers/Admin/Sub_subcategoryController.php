@@ -35,7 +35,7 @@ class Sub_subcategoryController extends Controller
             $categories = Category::latest()->orderBy('category_name_en', 'ASC')->get();
             $subcats = Subcategory::latest()->get();
             $subsubcats =  SubSubCategory::with('category', 'subcategory', 'admin')->latest()->get();
-            $subsubcats_deleted =  SubSubCategory::onlyTrashed()->get();
+            $subsubcats_deleted =  SubSubCategory::onlyTrashed()->with('category', 'subcategory', 'admin')->get();
 
 
             return view('admin.category.subsubcategory_index', compact('categories', 'subcats', 'subsubcats', 'subsubcats_deleted'));

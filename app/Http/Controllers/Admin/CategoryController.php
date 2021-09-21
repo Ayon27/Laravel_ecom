@@ -30,9 +30,9 @@ class CategoryController extends Controller
     {
         //
         try {
-            $categories = Category::with('subcategory', 'admin')->latest()->get();
+            $categories = Category::with('admin')->latest()->get();
 
-            $categories_deleted =  Category::onlyTrashed()->latest()->get();
+            $categories_deleted =  Category::onlyTrashed()->with('admin')->latest()->get();
 
             return view('admin.category.category_index', compact('categories', 'categories_deleted'));
         } catch (Exception $e) {

@@ -199,11 +199,13 @@
                                                         <h2 class="title">{{ $subcategory->subcat_name_en }}</h2>
 
                                                         @foreach ($category['subsubcategory'] as $subsubcategory)
-
+                                                        @if ($subsubcategory->subcategory_id == $subcategory->id)
                                                         <ul class="links">
                                                             <li><a href="#">{{ $subsubcategory->subsubcat_name_en }}</a>
                                                             </li>
                                                         </ul>
+                                                        @endif
+
                                                         @endforeach
                                                     </div>
                                                     @endforeach

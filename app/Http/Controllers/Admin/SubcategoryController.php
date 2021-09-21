@@ -30,7 +30,7 @@ class SubcategoryController extends Controller
     {
         //
         $subcats = Subcategory::with('category', 'admin')->latest()->get();
-        $subcats_deleted =  Subcategory::onlyTrashed()->with('category')->latest()->get();
+        $subcats_deleted =  Subcategory::onlyTrashed()->with('category', 'admin')->latest()->get();
         $categories = Category::select('id', 'category_name_en')->orderBy('category_name_en', 'ASC')->get();
 
         return view('admin.category.subcategory_index', compact('subcats', 'subcats_deleted', 'categories'));

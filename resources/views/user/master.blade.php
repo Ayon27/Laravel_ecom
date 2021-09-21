@@ -32,23 +32,23 @@
             crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         {{-- <link rel="stylesheet" href="{{ asset('user/assets/css/animate.min.css') }}"> --}}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
             integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
+            crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
         {{-- <link rel="stylesheet" href="{{ asset('user/assets/css/rateit.css') }}"> --}}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.rateit/1.1.5/rateit.css"
+        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.rateit/1.1.5/rateit.css"
             integrity="sha512-UBZiEmhvSN+QLmroxtPWf4f1SsvHlDTAKqMfRw8g9vxALzXsPd/pkwgULarTBp28QRW+L70bAU6Z5Noh0A+OIg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
+            crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
         {{-- <link rel="stylesheet" href="{{ asset('user/assets/css/bootstrap-select.min.css') }}"> --}}
-        <link rel="stylesheet"
+        {{-- <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css"
             integrity="sha512-ZACc4FM2d+Iq2BskSukuyDBB9Y2Ewji0/aRTqThaf3Op5u0MkdL7EqEgE6hnjjbP/Igl0bJCWLlGiNIIfr0Cdg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
+            crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
         <!-- Icons/Glyphs -->
-        <link rel="stylesheet" href="{{ asset('user/assets/css/font-awesome.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('user/assets/css/font-awesome.css') }}"> --}}
         {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css"
             integrity="sha512-P9vJUXK+LyvAzj8otTOKzdfF1F3UYVl13+F8Fof8/2QNb8Twd6Vb+VD52I7+87tex9UXxnzPgWA3rH96RExA7A=="
             crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
