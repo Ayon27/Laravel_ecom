@@ -186,6 +186,7 @@
                                 @endphp
                                 @foreach ($categories as $category)
                                 <li class="dropdown yamm mega-menu"> <a
+                                        onclick="window.location.href='{{ route('category-all-products', $category->category_slug_en) }}'"
                                         href="{{ route('category-all-products', $category->category_slug_en) }}"
                                         target="__blank" data-hover="dropdown" class="dropdown-toggle"
                                         data-toggle="dropdown">{{ $category->category_name_en }}</a>
