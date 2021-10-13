@@ -68,7 +68,7 @@
     <!-- /.container -->
 </div>
 
-<header class="header-style-1" style="background: #071621;position:sticky;top:0;width:100%;z-index:100;">
+<header class="header-style-1" style="background: #071621;position:sticky;top:0;width:100%;z-index:1000;">
 
     <!-- ============================================== TOP MENU ============================================== -->
 
