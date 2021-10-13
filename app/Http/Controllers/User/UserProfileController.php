@@ -51,6 +51,8 @@ class UserProfileController extends Controller
                 Rule::unique('users')->ignore(Auth::user()->id),
             ],
             'image' => 'image|mimes:jpeg,jpg,png,|max:5000|min:50'
+        ], [
+            'image.image' => 'Profile picture must be an image of type jpg/png'
         ]);
 
         $user = User::find(Auth::user()->id);

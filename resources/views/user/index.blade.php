@@ -371,6 +371,7 @@
                 <!-- ============================================== FEATURED PRODUCTS ============================================== -->
                 <section class="section featured-product wow fadeInUp" style="margin-top: 5vh">
                     <h3 class="section-title">Featured products</h3>
+
                     <div class="
                             owl-carousel
                             home-owl-carousel

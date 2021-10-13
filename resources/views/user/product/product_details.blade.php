@@ -336,7 +336,11 @@
                 <!-- ============================================== UPSELL PRODUCTS ============================================== -->
                 <section class="section featured-product wow fadeInUp">
                     <h3 class="section-title">Related products</h3>
-                    <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
+
+                    <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs"
+                        data-item="5">
+
+
                         @foreach ($related_products as $item)
                         <div class="item item-carousel">
                             @php $amt =
@@ -410,6 +414,8 @@
                         </div><!-- /.item -->
                         @endforeach
                     </div><!-- /.home-owl-carousel -->
+
+
                 </section><!-- /.section -->
                 <!-- ============================================== UPSELL PRODUCTS : END ============================================== -->
 

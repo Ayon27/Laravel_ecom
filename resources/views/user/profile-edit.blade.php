@@ -50,13 +50,15 @@
                                 <label for="image">Photo</label>
                                 <input type="file" class="form-control" id="image" name="image"
                                     value="{{ $user->phone }}">
+                                <p style="color: red" id="imgErr"> </p>
                                 @error('image')
-                                <p style="color: red"> <small>{{ $message }}</small> </p>
+                                <p style="color: red">{{ $message }} </p>
                                 @enderror
                             </div>
 
 
-                            <button type="submit" class="btn btn-primary"><strong> Update </strong></button>
+                            <button type="submit" class="btn btn-primary" id="submitBtn"><strong> Update
+                                </strong></button>
                             <a href="{{ route('user.profile') }}" class="btn btn-primary" role="button"
                                 aria-disabled="true"><strong>Cancel</strong> </a>
                         </form>
@@ -80,6 +82,13 @@
                 $('#img_to_show').attr('src', e.target.result);
             }
             reader.readAsDataURL(e.target.files['0']);
+
+            var extension = e.target.files['0'].name.split('.').pop().toLowerCase();
+            var validFileExtensions = ['jpeg', 'jpg', 'png'];
+            if ($.inArray(extension, validFileExtensions) == -1) {
+                $('#submitBtn').prop('disabled', true);
+                $('#imgErr').text("Profile Picture must be jpg / png. Please refresh the form for further operations");
+            }
         });
     });
 </script>
