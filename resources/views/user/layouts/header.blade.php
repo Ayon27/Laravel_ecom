@@ -197,14 +197,20 @@
                                                     @foreach ($category['subcategory'] as $subcategory)
 
                                                     <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                                        <a href="">
+                                                        <a
+                                                            href="{{ route('subcategory-all-products',
+                                                            ['catSlug' => $category->category_slug_en, 'subcatSlug' => $subcategory->subcat_slug_en]) }}">
                                                             <h2 class="title">{{ $subcategory->subcat_name_en }}</h2>
                                                         </a>
 
                                                         @foreach ($category['subsubcategory'] as $subsubcategory)
                                                         @if ($subsubcategory->subcategory_id == $subcategory->id)
                                                         <ul class="links">
-                                                            <a href="">
+                                                            <a
+                                                                href="{{ route('subsubcategory-all-products',
+                                                            ['catSlug' => $category->category_slug_en,
+                                                             'subcatSlug' => $subcategory->subcat_slug_en,
+                                                            'subsubcatSlug' => $subsubcategory->subsubcat_slug_en]) }}">
                                                                 <li>{{ $subsubcategory->subsubcat_name_en }} </li>
                                                             </a>
                                                         </ul>

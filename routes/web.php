@@ -151,6 +151,14 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
 //home route
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
-//product details subsubcategory-all-products
-Route::get('/product/{slug}', [ProductDeatilsController::class, 'ShowProduct'])->name('single-product'); //single product page
-Route::get('/{slug}', [UserCategoryController::class, 'AllProducts'])->name('category-all-products');
+//single product
+Route::get('/product/{slug}', [ProductDeatilsController::class, 'ShowProduct'])->name('single-product');
+
+//category wise all products
+Route::get('/{slug}', [UserCategoryController::class, 'AllProductsCat'])->name('category-all-products');
+
+//subcategory wise all products
+Route::get('/{catSlug}/{subcatSlug}', [UserCategoryController::class, 'AllProductsSubcat'])->name('subcategory-all-products');
+
+//subsubcategory wise all products
+Route::get('/{catSlug}/{subcatSlug}/{subsubcatSlug}', [UserCategoryController::class, 'AllProductsSubsubcat'])->name('subsubcategory-all-products');

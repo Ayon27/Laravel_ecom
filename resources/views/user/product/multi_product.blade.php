@@ -33,12 +33,14 @@
                     <!-- ===== == TOP NAVIGATION ======= ==== -->
                     <!-- = ==== TOP NAVIGATION : END === ===== -->
 
+                    @if ($flag == 0)
                     <div class="sidebar-module-container">
                         <div class="sidebar-filter">
                             <!-- ============================================== Size============================================== -->
                             <div class="sidebar-widget wow fadeInUp">
                                 <div class="widget-header">
-                                    <h2 class="widget-title" style="margin-bottom: 1vh; font-size:large">Sub Categories
+                                    <h2 class="widget-title" style="margin-bottom: 1vh; font-size:large">
+                                        Sub Categories
                                     </h2>
                                 </div>
                                 <div class="sidebar-widget-body">
@@ -63,6 +65,40 @@
                         </div>
                         <!-- /.sidebar-filter -->
                     </div>
+                    @elseif ($flag == 1)
+                    <div class="sidebar-module-container">
+                        <div class="sidebar-filter">
+                            <!-- ============================================== Size============================================== -->
+                            <div class="sidebar-widget wow fadeInUp">
+                                <div class="widget-header">
+                                    <h2 class="widget-title" style="margin-bottom: 1vh; font-size:large">
+                                        Sub Sub-Categories
+                                    </h2>
+                                </div>
+                                <div class="sidebar-widget-body">
+                                    @foreach ($category['subsubcategory'] as $item)
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                            value="{{ $item->subsubcat_slug_en }}" id="{{ $item->subcat_slug_en }}">
+                                        <label class="form-check-label" for="{{ $item->subcat_slug_en }}"
+                                            style="margin-left: 2%">
+                                            {{ $item->subsubcat_name_en }}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <!-- /.sidebar-widget-body -->
+                            </div>
+                            <!-- /.sidebar-widget -->
+
+                            <!-- /.sidebar-widget -->
+                            <div class="home-banner"> </div>
+                        </div>
+                        <!-- /.sidebar-filter -->
+                    </div>
+                    @endif
+
                     <!-- /.sidebar-module-container -->
 
                     <div class="sidebar-module-container">
@@ -79,22 +115,28 @@
                                         <ul class="list-style-6 margin-50px-bottom text-small">
                                             <li><input class="form-check-input" type="checkbox" value="" id="price1">
                                                 <label class="form-check-label" for="price1" style="margin-left: 2%">
-                                                    Under 1000 </label> </li>
+                                                    Under 1000 </label>
+                                            </li>
                                             <li><input class="form-check-input" type="checkbox" value="" id="price2">
                                                 <label class="form-check-label" for="price2" style="margin-left: 2%">
-                                                    1001 - 2000 </label> </li>
+                                                    1001 - 2000 </label>
+                                            </li>
                                             <li><input class="form-check-input" type="checkbox" value="" id="price3">
                                                 <label class="form-check-label" for="price3" style="margin-left: 2%">
-                                                    2001 - 3000 </label> </li>
+                                                    2001 - 3000 </label>
+                                            </li>
                                             <li><input class="form-check-input" type="checkbox" value="" id="price4">
                                                 <label class="form-check-label" for="price4" style="margin-left: 2%">
-                                                    3001 - 4000 </label> </li>
+                                                    3001 - 4000 </label>
+                                            </li>
                                             <li><input class="form-check-input" type="checkbox" value="" id="price5">
                                                 <label class="form-check-label" for="price5" style="margin-left: 2%">
-                                                    4001 - 5000 </label> </li>
+                                                    4001 - 5000 </label>
+                                            </li>
                                             <li><input class="form-check-input" type="checkbox" value="" id="price6">
                                                 <label class="form-check-label" for="price6" style="margin-left: 2%">
-                                                    Above 5000 </label> </li>
+                                                    Above 5000 </label>
+                                            </li>
                                         </ul>
 
                                     </div>
@@ -173,9 +215,10 @@
                 <div class="clearfix filters-container" style="padding-bottom:2vh;">
 
                     <div class="row">
-                        <div class="col col-sm-6 col-md-2" style="float: left">
+                        <div class="col col-sm-6 col-md-6" style="float: left">
                             <h5 style="font-family: Arial, Helvetica, sans-serif; font-size:large; font-weight: bold">
-                                {{ $title }}</h5>
+                                {{ $title }}
+                            </h5>
                         </div>
 
                         <!-- /.col -->
@@ -237,6 +280,9 @@
                         <div class="tab-pane active " id="grid-container">
                             <div class="category-product">
                                 <div class="row">
+                                    @if ($products->isEmpty())
+                                    <p class="text-center">Sorry, No products found!</p>
+                                    @endif
                                     @foreach ($products as $item)
 
                                     <div class="col-sm-6 col-md-4 wow fadeInUp animated"
@@ -290,8 +336,8 @@
                                                         </span>
 
                                                         @if($item->product_actual_price>$item->product_discount_price)
-                                                        <span
-                                                            class="price-before-discount">৳{{ $item->product_actual_price}}</span>
+                                                        <span class="price-before-discount">৳{{
+                                                            $item->product_actual_price}}</span>
                                                         @endif
                                                     </div>
                                                     <!-- /.product-price -->
@@ -306,11 +352,13 @@
                                                                     data-toggle="dropdown" type="button"> <i
                                                                         class="fa fa-shopping-cart"></i> </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add to cart</button>
+                                                                    type="button">Add to
+                                                                    cart</button>
                                                             </li>
                                                             <li class="lnk wishlist"> <a class="add-to-cart"
                                                                     href="detail.html" title="Wishlist"> <i
-                                                                        class="icon fa fa-heart"></i> </a> </li>
+                                                                        class="icon fa fa-heart"></i> </a>
+                                                            </li>
                                                             <li class="lnk"> <a class="add-to-cart" href="detail.html"
                                                                     title="Compare"> <i class="fa fa-signal"></i> </a>
                                                             </li>
@@ -386,7 +434,8 @@
                                                         <div class="description m-t-10">
                                                             @if(session()->get('language') == 'hindi')
                                                             {{ $product->short_descp_hin }} @else
-                                                            {{ $product->short_descp_en }} @endif</div>
+                                                            {{ $product->short_descp_en }} @endif
+                                                        </div>
                                                         <div class="cart clearfix animate-effect">
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
@@ -404,7 +453,8 @@
                                                                                 class="icon fa fa-heart"></i> </a> </li>
                                                                     <li class="lnk"> <a class="add-to-cart"
                                                                             href="detail.html" title="Compare"> <i
-                                                                                class="fa fa-signal"></i> </a> </li>
+                                                                                class="fa fa-signal"></i> </a>
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                             <!-- /.action -->
