@@ -140,12 +140,11 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::get('/email/verify', function () {
         return view('auth.verify-email');
     })->middleware('auth')->name('verification.notice');
-
-
-    Route::get('/forgot-password-sent', [IndexController::class, 'password_reset_redir'])->name('password.reset.sent'); //forgot password email
-
 });
 
+
+// Route::get('/forgot-password', [IndexController::class, 'password_reset_redir'])->name('password.reset'); //forgot password email
+Route::get('/forgot-password-sent', [IndexController::class, 'password_reset_redir'])->name('password.reset.sent'); //forgot password email
 
 //Frontend Routes. No Auth Req
 //home route

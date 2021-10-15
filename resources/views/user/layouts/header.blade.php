@@ -1,71 +1,71 @@
-<div class="top-bar animate-dropdown" style="background:#071621;>
-    <div class=" container">
-    <div class="header-top-inner">
-        <div class="cnt-account">
+<div class="top-bar animate-dropdown" style="background:#071621;">
+    <div class=" container-fluid">
+        <div class="header-top-inner">
+            <div class="cnt-account">
 
-            <ul class="list">
-                <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
-                <li><a href="#"><i class="fa fa-industry" aria-hidden="true"></i> Wholesale</a></li>
-                <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a></li>
+                <ul class="list">
+                    <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
+                    <li><a href="#"><i class="fa fa-industry" aria-hidden="true"></i> Wholesale</a></li>
+                    <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a></li>
 
 
 
-            </ul>
-        </div>
-        <!-- /.cnt-account -->
+                </ul>
+            </div>
+            <!-- /.cnt-account -->
 
-        <div class="cnt-block">
-            <ul class="list-styled list-inline">
+            <div class="cnt-block">
+                <ul class="list-styled list-inline">
 
-                @auth
+                    @auth
 
-                <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
-                        data-toggle="dropdown"><span class="value"><i class="icon fa fa-user"></i> My
-                            Account</a>
-                    </span><b class="caret"></b></a>
+                    <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
+                            data-toggle="dropdown"><span class="value"><i class="icon fa fa-user"></i> My
+                                Account</a>
+                        </span><b class="caret"></b></a>
 
-                    <ul class="dropdown-menu">
-                        <li name="account" style="margin-top: 1vh;}"><a href="{{ route('user.profile') }}">
-                                <h5><i class="icon fa fa-user"></i> &nbsp;
-                                    Manage Profile</h5>
-                            </a>
-                        </li>
-                        <li name="account" style="margin-top: 1vh"><a href="#">
-                                <h5><i class="icon fa fa-list"></i> &nbsp;
-                                    View Orders</h5>
-                            </a></li>
+                        <ul class="dropdown-menu">
+                            <li name="account" style="margin-top: 1vh;}"><a href="{{ route('user.profile') }}">
+                                    <h5><i class="icon fa fa-user"></i> &nbsp;
+                                        Manage Profile</h5>
+                                </a>
+                            </li>
+                            <li name="account" style="margin-top: 1vh"><a href="#">
+                                    <h5><i class="icon fa fa-list"></i> &nbsp;
+                                        View Orders</h5>
+                                </a></li>
 
-                        <li name="account" style="margin-top: 1vh">
-                            <a href="{{ route('user.logout') }}">
-                                <h5><i class="icon fa fa-sign-out"></i> &nbsp;
-                                    Sign Out</h5>
-                            </a>
+                            <li name="account" style="margin-top: 1vh">
+                                <a href="{{ route('user.logout') }}">
+                                    <h5><i class="icon fa fa-sign-out"></i> &nbsp;
+                                        Sign Out</h5>
+                                </a>
+                                </form>
+
+                            </li>
+
                             </form>
 
-                        </li>
+                        </ul>
+                    </li>
+                    @else
+                    <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
+                            <strong style="color: white">Login</strong> </a></li> |
+                    <li><a href="{{ route('register') }}"><i class="icon fa fa-lock"></i> <strong style="color: white">
+                                Register</strong></a></li>
+                    @endauth
 
-                        </form>
+                </ul>
 
-                    </ul>
-                </li>
-                @else
-                <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
-                        <strong style="color: white">Login</strong> </a></li> |
-                <li><a href="{{ route('register') }}"><i class="icon fa fa-lock"></i> <strong style="color: white">
-                            Register</strong></a></li>
-                @endauth
+                <!-- /.list-unstyled -->
+            </div>
 
-            </ul>
-
-            <!-- /.list-unstyled -->
+            <!-- /.cnt-cart -->
+            <div class="clearfix"></div>
         </div>
-
-        <!-- /.cnt-cart -->
-        <div class="clearfix"></div>
+        <!-- /.header-top-inner -->
     </div>
-    <!-- /.header-top-inner -->
-</div>
-<!-- /.container -->
+    <!-- /.container -->
 </div>
 
 <header class="header-style-1"

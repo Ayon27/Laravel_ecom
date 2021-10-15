@@ -1,16 +1,17 @@
-@extends('user.index')
+@extends('user.master')
 
 @section('user.conent')
 
 <div class="body-content">
 
-    <div class="container" style=" margin-bottom: 5vh">
+    <div class="container" style=" margin-bottom: 10vh; margin-top:10vh">
 
         <div class="sign-in-page">
 
-            <div class="row align-items-center">
+            <div class="row">
                 <!-- Sign-in -->
-                <div class="col-md-6 col-sm-12 sign-in">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 col-sm-12 sign-in" style="margin-top: 3vh; margin-bottom:3vh">
 
                     <h4 class="">Forgot Password?</h4>
                     <p class="">Please enter your email address. We'll send you a link to reset your password</p>

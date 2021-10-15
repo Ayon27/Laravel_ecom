@@ -82,7 +82,8 @@
                                                 <span class="label">Availability :</span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 col-md-8">
+
+                                        <div class="col-sm-10 col-md-3">
                                             <div class="stock-box">
                                                 @if ($product->quantity >0)
                                                 <strong class="value" style="color: limegreen">In Stock</strong>
@@ -91,6 +92,22 @@
                                                 @endif
                                             </div>
                                         </div>
+
+                                    </div><!-- /.row -->
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <div class="stock-box">
+                                                <span class="label">SKU :</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-10 col-md-3">
+                                            <div class="stock-box">
+                                                <p>{{ $product->product_code }}</p>
+
+                                            </div>
+                                        </div>
+
                                     </div><!-- /.row -->
                                 </div><!-- /.stock-container -->
                                 <div class="description-container m-t-20">
@@ -136,7 +153,8 @@
                                                 <option selected disabled>Select a Size</option>
                                                 @foreach ($product_size_en as $item)
                                                 <option value="{{ $item}}">
-                                                    {{ $item}}</option>
+                                                    {{ $item}}
+                                                </option>
                                                 @endforeach
                                             </select>
 
@@ -154,7 +172,8 @@
                                                 <option selected disabled>Select a Color</option>
                                                 @foreach ($product_color_en as $item)
                                                 <option value="{{ $item}}">
-                                                    {{ $item}}</option>
+                                                    {{ $item}}
+                                                </option>
                                                 @endforeach
                                             </select>
 
@@ -364,7 +383,8 @@
                                                 <span>{{round($dscnt)}}%</span>
                                             </div>
 
-                                            @endif</div>
+                                            @endif
+                                        </div>
                                     </div><!-- /.product-image -->
 
 
@@ -378,8 +398,8 @@
                                         <div class="product-price">
                                             <span class="price"> ৳{{ $item->product_discount_price}} </span>
                                             @if($item->product_actual_price>$item->product_discount_price)
-                                            <span
-                                                class="price-before-discount ">৳{{ $item->product_actual_price}}</span>
+                                            <span class="price-before-discount ">৳{{
+                                                $item->product_actual_price}}</span>
                                             @endif
 
                                         </div><!-- /.product-price -->

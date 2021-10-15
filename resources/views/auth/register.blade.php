@@ -5,14 +5,15 @@
 <body class="cnt-home">
 
     <div class="body-content">
-        <div class="container" style=" margin-bottom: 5vh">
+        <div class="container" style=" margin-bottom: 5vh; margin-top:5vh">
 
             <div class="sign-in-page">
 
                 <div class="row">
 
+                    <div class="col-md-3"></div>
                     <!-- create a new account -->
-                    <div class="col-md-6 col-sm-6 create-new-account">
+                    <div class="col-md-6 col-sm-6 create-new-account" style="margin-top: 3vh">
                         <h4 class="checkout-subtitle">Welcome to All-Out Vision Limited</h4>
                         <p class="text title-tag-line">Please create your new account.</p>
                         <form class="register-form outer-top-xs" action="{{ route('register') }}" method="POST">
