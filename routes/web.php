@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\Sub_subcategoryController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\user\CategoryController as UserCategoryController;
 use App\Http\Controllers\User\IndexController;
 use App\Http\Controllers\User\ProductDeatilsController;
@@ -161,3 +162,6 @@ Route::get('/{catSlug}/{subcatSlug}', [UserCategoryController::class, 'AllProduc
 
 //subsubcategory wise all products
 Route::get('/{catSlug}/{subcatSlug}/{subsubcatSlug}', [UserCategoryController::class, 'AllProductsSubsubcat'])->name('subsubcategory-all-products');
+
+//add to cart ajax
+Route::post('/cart/ajax/add/{productID}', [CartController::class, 'addToCart']);

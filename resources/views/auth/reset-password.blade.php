@@ -1,4 +1,4 @@
-@extends('user.index')
+@extends('user.master')
 
 @section('user.conent')
 

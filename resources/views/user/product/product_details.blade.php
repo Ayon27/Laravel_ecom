@@ -142,6 +142,8 @@
                                     </div><!-- /.row -->
                                 </div><!-- /.price-container -->
 
+                                @if ($product->quantity > 0)
+
                                 <div class="row" style="margin-top: 2vh">
                                     <div class="col-sm-6">
 
@@ -149,15 +151,17 @@
                                             <label class="info-title control-label">Select Size
                                                 <span>*</span></label>
                                             <select class="form-control unicase-form-control"
-                                                aria-label=".form-select-lg example">
-                                                <option selected disabled>Select a Size</option>
+                                                aria-label=".form-select-lg example" id="sizeSelect"
+                                                onchange="clearText('sizeErr')">
+                                                <option selected disabled value="">Select a Size</option>
                                                 @foreach ($product_size_en as $item)
                                                 <option value="{{ $item}}">
                                                     {{ $item}}
                                                 </option>
                                                 @endforeach
                                             </select>
-
+                                            <p style="color: red; font-weight: bold" class="text-center" id="sizeErr">
+                                            </p>
                                         </div>
 
 
@@ -168,15 +172,17 @@
                                             <label class="info-title control-label">Select Color
                                                 <span>*</span></label>
                                             <select class="form-control unicase-form-control"
-                                                aria-label=".form-select-lg example">
-                                                <option selected disabled>Select a Color</option>
+                                                aria-label=".form-select-lg example" id="colorSelect"
+                                                onchange="clearText('colorErr')">
+                                                <option selected disabled value="">Select a Color</option>
                                                 @foreach ($product_color_en as $item)
                                                 <option value="{{ $item}}">
                                                     {{ $item}}
                                                 </option>
                                                 @endforeach
                                             </select>
-
+                                            <p style="color: red; font-weight: bold" class="text-center" id="colorErr">
+                                            </p>
                                         </div>
 
 
@@ -191,36 +197,49 @@
                                     <div class="row">
 
                                         <div class="col-sm-2">
-                                            <span class="label">Qty :</span>
+                                            <span class="label"><strong> Quantity : </strong></span>
                                         </div>
 
                                         <div class="col-sm-2">
                                             <div class="cart-quantity">
                                                 <div class="quant-input">
                                                     <div class="arrows">
-                                                        <div class="arrow plus gradient"><span class="ir"><i
-                                                                    class="icon fa fa-sort-asc"></i></span>
+                                                        <div class="arrow plus gradient"
+                                                            onclick="increaseProdCount({{ $product->quantity }})"><span
+                                                                class="ir"><i class="icon fa fa-sort-asc"></i></span>
                                                         </div>
-                                                        <div class="arrow minus gradient"><span class="ir"><i
-                                                                    class="icon fa fa-sort-desc"></i></span>
+                                                        <div class="arrow minus gradient" onclick="decreaseProdCount()">
+                                                            <span class="ir"><i class="icon fa fa-sort-desc"></i></span>
                                                         </div>
                                                     </div>
-                                                    <input type="text" value="1">
+                                                    <input type="text" value="1" id="productQty" disabled>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-7">
-                                            <a href="#" class="btn btn-primary"><i
-                                                    class="fa fa-shopping-cart inner-right-vs"></i> ADD TO
+                                            <a href="#" class="btn btn-primary"
+                                                onclick="initiateCart({{ $product->id }})"><i
+                                                    class="fa fa-shopping-cart inner-right-vs"></i>
+                                                ADD TO
                                                 CART</a>
                                         </div>
-
 
                                     </div><!-- /.row -->
                                 </div><!-- /.quantity-container -->
 
+                                @else
+                                <div class="quantity-container info-container">
+                                    <div class="row">
 
+                                        <div class="col-12">
+                                            <span class="label"><strong>This product is not available right now.
+                                                </strong></span>
+                                        </div>
+
+                                    </div><!-- /.row -->
+                                </div><!-- /.quantity-container -->
+                                @endif
 
 
 
@@ -442,11 +461,11 @@
             </div><!-- /.col -->
             <div class="clearfix"></div>
         </div><!-- /.row -->
-
     </div><!-- /.container -->
 </div><!-- /.body-content -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $("img[name = 'image-gallery']").click(function(e){
@@ -455,4 +474,5 @@
         });
     });
 </script>
+
 @endsection
