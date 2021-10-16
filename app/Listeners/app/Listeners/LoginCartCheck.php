@@ -8,6 +8,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\user\cartOperationsController;
 use Throwable;
+use Illuminate\Support\Facades\DB;
 
 class LoginCartCheck
 {
@@ -16,6 +17,7 @@ class LoginCartCheck
      *
      * @return void
      */
+
     public function __construct()
     {
         //
@@ -31,25 +33,40 @@ class LoginCartCheck
     {
         //
         // return abort(404);
-        if (Session::has('cart')) {
-            $this->addCartToDatabase();
-        }
+
+        $userID = Auth::user()->id;
         $cartOp = new cartOperationsController();
 
-        $userID = Auth::user()->id;
-
-        Cart::restore($userID);
+        if (Session::has('cart')) {
+            if ($this->mergeAndUpsert($cartOp, $userID)) {
+            } else {
+                $this->addCartToDatabase($userID);
+            }
+        } else Cart::restore($userID);
     }
 
-    public function addCartToDatabase()
+    public function addCartToDatabase($userID)
     {
         # code...
-        $userID = Auth::user()->id;
         try {
             Cart::store($userID);
             return;
         } catch (Throwable $e) {
             return redirect()->back()->with($e);
+        }
+    }
+
+    public function mergeAndUpsert(cartOperationsController $cartOp, $userID)
+    {
+        try {
+            if (DB::table('shoppingcart')->where('identifier', $userID)->exists()) {
+                Cart::instance('default')->merge($userID);
+                $cartOp->upsertCartInDatabase('shoppingcart', $userID, Cart::content());
+                return true;
+            } else return false;
+        } catch (\Throwable $th) {
+            //throw $th;
+            return false;
         }
     }
 }

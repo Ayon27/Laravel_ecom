@@ -19,7 +19,7 @@ class cartOperationsController extends Controller
         DB::table($table)->where('identifier', '=', $identifier)->delete();
     }
 
-    public function addCartInDatabase($table, $identifier, $content)
+    public function upsertCartInDatabase($table, $identifier, $content)
     {
         # code...
         DB::table($table)->upsert([
@@ -28,15 +28,14 @@ class cartOperationsController extends Controller
             'content'    => serialize($content),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-        ], ['identifier', 'instance'], ['content']);
+        ], ['identifier'], ['content', 'updated_at']);
     }
 
     public function updateCartInDatabase($table, $identifier, $content)
     {
         # code...
         try {
-            // $this->deleteCartFromDatabase($table, $identifier);
-            $this->addCartInDatabase($table, $identifier, $content);
+            $this->upsertCartInDatabase($table, $identifier, $content);
             return;
         } catch (Throwable $e) {
             return abort(500);
