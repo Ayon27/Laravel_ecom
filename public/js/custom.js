@@ -46,7 +46,69 @@ function addToCart(productID, quantity, size, color) {
         },
         url: "/cart/ajax/add/" + productID,
         success: function (data) {
-            alert(data);
+            const toast = Swal.mixin({
+                position: "center",
+                showConfirmButton: false,
+                timer: 1300,
+            });
+            if ($.isEmptyObject(data.error)) {
+                toast.fire({
+                    icon: "success",
+                    title: "Successfully added to cart",
+                });
+                miniCart(0);
+            } else {
+                toast.fire({
+                    icon: "error",
+                    title: "Failed. Something went wrong",
+                });
+            }
+        },
+    });
+}
+
+function miniCart(userID) {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/minicart/ajax/load/" + userID,
+        success: function (response) {
+            $("span[id=cartTotal]").text("BDT " + response.total);
+            $("span[id=cartQuantity]").text(response.qty);
+
+            var cart = "";
+            $.each(response.cartContent, function (key, value) {
+                cart += `<div class="row">
+                <div class="cart-item product-summary">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="image"> <a href="detail.html"><img src="/${value.options.image}"
+                                                    alt=""></a> </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
+                                        <div class="price">BDT ${value.price} </div>
+
+
+                                    </div>
+
+                                    <div class="col-xs-1 action">
+
+                                    <a href="#"><i class="fa fa-trash"></i></a> </div>
+                                </div>
+
+                            </div>
+                            </div>
+                            <div class="row text-center">
+                            <button type="button" class="btn">-</button>
+                                        <span id="productCountCart" style="margin-left:1vh; margin-right: 1vh"> ${value.qty}</span>
+                                        <button type="button" class="btn">+</button>
+                                         </div>
+                           <div class="clearfix"></div>
+                            <hr></hr>`;
+            });
+
+            $("#headerCart").html(cart);
         },
     });
 }

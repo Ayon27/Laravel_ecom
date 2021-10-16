@@ -136,6 +136,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js">
         </script>
         <script src="{{ asset('js/custom.js') }}"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             @if(Session::has('message'))
 
@@ -167,6 +168,19 @@
             'X-CSRF-TOKEN':$('meta[name=csrf-token]').attr('content')
         }
     })
+        </script>
+
+        @auth
+        {{ $userID = auth()->user()->id; }}
+        @endauth
+
+        @guest
+        {{ $userID = NULL; }}
+        @endguest
+        <script>
+            $( document ).ready(function() {
+                miniCart({{ $userID }});
+            });
         </script>
     </body>
 

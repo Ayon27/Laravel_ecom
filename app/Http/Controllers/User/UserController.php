@@ -4,7 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -82,12 +82,15 @@ class UserController extends Controller
     public function destroy(Request $request)
     {
         //
+        // $cart = session()->get('cart');
         Auth::logout();
 
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+        // session()->put(['cart' => $cart]);
+        // print_r($cart);
 
         return redirect()->route('home');
     }
