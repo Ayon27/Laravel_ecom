@@ -33,16 +33,18 @@ class LoginCartCheck
     {
         //
         // return abort(404);
+        if (Auth::guard('web')->check()) {
+            $userID = Auth::user()->id;
+            $cartOp = new cartOperationsController();
 
-        $userID = Auth::user()->id;
-        $cartOp = new cartOperationsController();
-
-        if (Session::has('cart')) {
-            if ($this->mergeAndUpsert($cartOp, $userID)) {
-            } else {
-                $this->addCartToDatabase($userID);
-            }
-        } else Cart::restore($userID);
+            if (Session::has('cart')) {
+                if ($this->mergeAndUpsert($cartOp, $userID)) {
+                } else {
+                    $this->addCartToDatabase($userID);
+                }
+            } else Cart::restore($userID);
+        }
+        return;
     }
 
     public function addCartToDatabase($userID)

@@ -112,7 +112,7 @@ class AdminController extends Controller
     public function index()
     {
         if (Auth::guard('web')->check()) {
-            return redirect()->back();
+            return redirect()->route('home');
         }
 
         return view('auth.adminLogin', ['guard' => 'admin']);
