@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\Sub_subcategoryController;
+use App\Http\Controllers\admin\VoucherController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\user\CategoryController as UserCategoryController;
@@ -97,13 +98,20 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::get('admin/product/toggle/{id}', [ProductController::class, 'ToggleStatus'])->name('product.active.toggle'); //toggle product status
 
     //Carousel Routes
-    Route::get('admin/carosuel/index', [CarouselController::class, 'index'])->name('carousel-index'); //lsit carousels
+    Route::get('admin/carosuel/index', [CarouselController::class, 'index'])->name('carousel-index'); //list carousels
     Route::post('admin/carosuel/add', [CarouselController::class, 'create'])->name('carousel-add'); //add a carousel
     Route::get('admin/carosuel/toggle/{id}', [CarouselController::class, 'ToggleStatus'])->name('carousel-toggle'); //toggle carousel status
     Route::get('admin/carosuel/edit/{id}', [CarouselController::class, 'edit'])->name('carousel-edit'); //edit carousel
     Route::post('admin/carosuel/update', [CarouselController::class, 'update'])->name('carousel-update'); //edit carousel
     Route::get('admin/carosuel/delete/{id}', [CarouselController::class, 'destroy'])->name('carousel-delete'); //delete carousel
 
+    //voucher routes
+    Route::get('admin/vouchers/index', [VoucherController::class, 'index'])->name('voucher-index'); //list Vouchers
+    Route::post('admin/vouchers/add', [VoucherController::class, 'store'])->name('voucher.add'); //add Vouchers
+    Route::get('admin/vouchers/delete/{id}', [VoucherController::class, 'delete'])->name('voucher.delete'); //delete Vouchers
+    Route::get('admin/vouchers/edit/{id}', [VoucherController::class, 'edit'])->name('voucher.edit'); //edit Voucher
+    Route::post('admin/vouchers/update', [VoucherController::class, 'update'])->name('voucher.update'); //update Voucher
+    Route::get('admin/vouchers/toggle/{id}', [VoucherController::class, 'toggleStatus'])->name('voucher.toggle'); //toggle Voucher status
 });
 
 

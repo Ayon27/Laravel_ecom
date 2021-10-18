@@ -17,7 +17,7 @@
         <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
 
-            <li class="{{ Request::route()->getName() == 'dashboard.admin' ? "active" : "" }}">
+            <li class="{{ Request::route()->getName() == 'dashboard.admin' ? " active" : "" }}">
                 <a href="{{ route ('dashboard.admin') }}">
                     <i data-feather="pie-chart"></i>
                     <span>Dashboard</span>
@@ -33,11 +33,12 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Request::route()->getName() == 'category.all' ? "active" : "" }}">
-                        <a href="{{ route('category.all') }}"><i class="ti-more"></i>Categories</a></li>
-                    <li class="{{ Request::route()->getName() == 'subcategory.all' ? "active" : "" }}"><a
+                    <li class="{{ Request::route()->getName() == 'category.all' ? " active" : "" }}">
+                        <a href="{{ route('category.all') }}"><i class="ti-more"></i>Categories</a>
+                    </li>
+                    <li class="{{ Request::route()->getName() == 'subcategory.all' ? " active" : "" }}"><a
                             href="{{ route('subcategory.all') }}"><i class="ti-more"></i>Sub Categories</a></li>
-                    <li class="{{ Request::route()->getName() == 'sub.subcategory.all' ? "active" : "" }}"><a
+                    <li class="{{ Request::route()->getName() == 'sub.subcategory.all' ? " active" : "" }}"><a
                             href="{{ route('sub.subcategory.all') }}"><i class="ti-more"></i>Sub sub-Categories</a></li>
                 </ul>
             </li>
@@ -50,9 +51,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class=" {{ Request::route()->getName() == 'add-product' ? "active" : "" }}"><a
+                    <li class=" {{ Request::route()->getName() == 'add-product' ? " active" : "" }}"><a
                             href="{{ route('add-product') }}"><i class="ti-more"></i>Add Products</a></li>
-                    <li class=" {{ Request::route()->getName() == 'manage-product' ? "active" : "" }}"><a
+                    <li class=" {{ Request::route()->getName() == 'manage-product' ? " active" : "" }}"><a
                             href="{{ route('manage-product') }}"><i class="ti-more"></i>Manage Products</a></li>
                 </ul>
             </li>
@@ -60,8 +61,13 @@
 
 
 
-            <li class=" {{ Request::route()->getName() == 'carousel-index' ? "active" : "" }}"><a
+            <li class=" {{ Request::route()->getName() == 'carousel-index' ? " active" : "" }}"><a
                     href="{{ route('carousel-index') }}"><i class=""></i>&nbsp; Sliders</a></li>
+
+            </li>
+
+            <li class=" {{ Request::route()->getName() == 'voucher-index' ? " active" : "" }}"><a
+                    href="{{ route('voucher-index') }}"><i class=""></i>&nbsp; Discount Vouchers</a></li>
 
             </li>
 

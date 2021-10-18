@@ -12,6 +12,14 @@ use Carbon\Carbon;
 
 class CarouselController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin,admin');
+        $this->middleware('prevent-back-button');
+        $this->middleware('XssSanitizer');
+    }
+
     /**
      * Display a listing of the resource.
      *

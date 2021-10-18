@@ -75,7 +75,7 @@ class CategoryController extends Controller
                 'message' => 'Successfully added',
                 'alert-type' => 'success'
             );
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $notification = array(
                 'message' => 'Failed to add category',
                 'alert-type' => 'error'
@@ -122,7 +122,7 @@ class CategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
             return view('admin.category.category_edit', compact('category'));
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $notification = array(
                 'message' => 'An eror occurred',
                 'alert-type' => 'error'
