@@ -117,7 +117,7 @@
                             </div>
                         </div>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" id="cartDropdownMenu">
                         <li>
                             <div id="headerCart">
 

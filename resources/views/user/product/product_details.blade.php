@@ -205,10 +205,11 @@
                                                 <div class="quant-input">
                                                     <div class="arrows">
                                                         <div class="arrow plus gradient"
-                                                            onclick="increaseProdCount({{ $product->quantity }})"><span
-                                                                class="ir"><i class="icon fa fa-sort-asc"></i></span>
+                                                            onclick="increaseProdCount({{ $product->quantity }},`productQty` )">
+                                                            <span class="ir"><i class="icon fa fa-sort-asc"></i></span>
                                                         </div>
-                                                        <div class="arrow minus gradient" onclick="decreaseProdCount()">
+                                                        <div class="arrow minus gradient"
+                                                            onclick="decreaseProdCount(`productQty`)">
                                                             <span class="ir"><i class="icon fa fa-sort-desc"></i></span>
                                                         </div>
                                                     </div>

@@ -166,3 +166,9 @@ Route::get('/{catSlug}/{subcatSlug}/{subsubcatSlug}', [UserCategoryController::c
 //add to cart ajax
 Route::post('/cart/ajax/add/{productID}', [CartController::class, 'addToCart']);
 Route::get('/minicart/ajax/load/{id}', [CartController::class, 'loadMinicart']);
+
+//delete cart ajax
+Route::get('/minicart/ajax/deleteItem/{rowId}', [CartController::class, 'deleteCartItem']);
+
+//update cart ajax
+Route::get('/minicart/ajax/updateItem/{rowId}', [CartController::class, 'updateItemQty']);

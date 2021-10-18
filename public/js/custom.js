@@ -2,21 +2,21 @@ function clearText(id) {
     $("#" + id).text("");
 }
 
-function increaseProdCount(max_quantity) {
-    var count = $("#productQty").val();
+function increaseProdCount(max_quantity, id) {
+    var count = $("#" + id).val();
 
     if (count < max_quantity) {
-        ++count;
-        $("#productQty").val(count);
+        count++;
+        $("#" + id).val(count);
     }
 }
 
-function decreaseProdCount() {
-    var count = $("#productQty").val();
+function decreaseProdCount(id) {
+    var count = $("#" + id).val();
 
     if (count > 1) {
-        --count;
-        $("#productQty").val(count);
+        count--;
+        $("#" + id).val(count);
     }
 }
 
@@ -56,7 +56,7 @@ function addToCart(productID, quantity, size, color) {
                     icon: "success",
                     title: "Successfully added to cart",
                 });
-                miniCart(0);
+                miniCart(0, false);
             } else {
                 toast.fire({
                     icon: "error",
@@ -67,7 +67,7 @@ function addToCart(productID, quantity, size, color) {
     });
 }
 
-function miniCart(userID) {
+function miniCart(userID, expand = false) {
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -94,21 +94,60 @@ function miniCart(userID) {
 
                                     <div class="col-xs-1 action">
 
-                                    <a href="#"><i class="fa fa-trash"></i></a> </div>
+                                    <a href="#"  onclick="deleteCartItem('${value.rowId}')"><i class="fa fa-trash"></i></a> </div>
                                 </div>
 
                             </div>
                             </div>
                             <div class="row text-center">
-                            <button type="button" class="btn">-</button>
-                                        <span id="productCountCart" style="margin-left:1vh; margin-right: 1vh"> ${value.qty}</span>
-                                        <button type="button" class="btn">+</button>
-                                         </div>
+                                <div class="price">Size: ${value.options.size}  </div>
+                            </div>
+                                      <div class="row text-center">
+                                <div class="price">Color: ${value.options.color} </div>
+                            </div>
+                                                        <div class="row text-center">
+                                <button type="button" class="btn"
+                                 onclick="updateCartQty('${value.rowId}', 0)">-</button>
+                                <input type="text" disabled id="productCountCart" style="margin-left:1vh; margin-right: 1vh; max-width:5vh"
+                                 value=" ${value.qty}"></input>
+                                <button type="button" class="btn"
+                                onclick="updateCartQty('${value.rowId}', 1)">+</button>
+                                <p style="color:red" id="qtyErr"></p>
+
+                            </div>
                            <div class="clearfix"></div>
                             <hr></hr>`;
             });
 
             $("#headerCart").html(cart);
+            if (expand) $("#cartDropdownMenu").show();
+        },
+    });
+}
+
+function deleteCartItem(rowId) {
+    // alert(rowId);
+    $.ajax({
+        type: "GET",
+        url: "/minicart/ajax/deleteItem/" + rowId,
+        dataType: "json",
+        success: function (data) {
+            miniCart(0, true);
+        },
+    });
+}
+
+function updateCartQty(rowId, increase) {
+    $.ajax({
+        type: "GET",
+        url: "/minicart/ajax/updateItem/" + rowId,
+        dataType: "json",
+        data: {
+            property: increase,
+        },
+        success: function (data) {
+            miniCart(0, true);
+            if (data.msg != "successful") $("#qtyErr").text(data.msg);
         },
     });
 }

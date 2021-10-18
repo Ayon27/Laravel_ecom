@@ -169,14 +169,12 @@
         }
     })
         </script>
+        @php
 
-        @auth
-        {{ $userID = auth()->user()->id; }}
-        @endauth
+        if(auth()->check()) $userID = auth()->user()->id;
+        else $userID = NULL;
 
-        @guest
-        {{ $userID = NULL; }}
-        @endguest
+        @endphp
         <script>
             $( document ).ready(function() {
                 miniCart({{ $userID }});

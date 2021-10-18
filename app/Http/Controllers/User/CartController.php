@@ -32,19 +32,29 @@ class CartController extends Controller
                 'image' => $product->product_thumbnail,
                 'color' => $request->color,
                 'size' => $request->size,
+                'stock' => $product->quantity,
             ]
         ]);
+        $this->cartUpdateifAuth();
+        return response()->json(['msg' => 'success']);
+    }
 
+    public function cartUpdateifAuth()
+    {
+        # code...
         $content = Cart::content();
+        $table = 'shoppingcart';
+
         if (Auth::check()) {
             $userID = Auth::user()->id;
 
-            $this->cartOp->updateCartInDatabase('shoppingcart', $userID, $content);
-            // Cart::store($userID);
-            // Cart::instance('default')->store($userID);
-
+            if (Cart::count() == 0) {
+                $this->cartOp->deleteCartFromDatabase($table, $userID);
+            } else {
+                $this->cartOp->updateCartInDatabase($table, $userID, $content);
+            }
         }
-        return response()->json(['msg' => 'success']);
+        return;
     }
 
     public function loadMinicart()
@@ -71,5 +81,51 @@ class CartController extends Controller
             );
             return redirect()->back()->with($notification);
         }
+    }
+
+    public function deleteCartItem($rowId)
+    {
+        # code...
+        Cart::remove($rowId);
+        $this->cartUpdateifAuth();
+        return response()->json(['msg' => 'successsful']);
+    }
+
+    public function updateItemQty(Request $request, $rowId)
+    {
+        # code...
+        $content = Cart::get($rowId);
+        if ($request->property == 1) {
+            return $this->increseQty($rowId, $content);
+        } else {
+            return $this->decreaseQty($rowId, $content);
+        }
+    }
+
+    public function increseQty($rowId, $content)
+    {
+        $available_units = $content->options->stock;
+        $currentUnits = $content->qty;
+
+        if ($currentUnits < $available_units) {
+            $currentUnits++;
+            Cart::update($rowId, $currentUnits);
+            $this->cartUpdateifAuth();
+            return response()->json(['msg' => 'successful']);
+        } else
+            return response()->json(['msg' => 'Selected quantity unavailable']);
+    }
+
+    public function decreaseQty($rowId, $content)
+    {
+        $content =  Cart::get($rowId);
+        $currentUnits = $content->qty;
+        if ($currentUnits > 1) {
+            $currentUnits--;
+            Cart::update($rowId, $currentUnits);
+            $this->cartUpdateifAuth();
+            return response()->json(['msg' => 'successful']);
+        } else
+            return response()->json(['msg' => 'Quantity cannot be less than 1']);
     }
 }
