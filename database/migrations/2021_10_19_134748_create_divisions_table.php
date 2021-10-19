@@ -17,6 +17,7 @@ class CreateDivisionsTable extends Migration
             $table->id();
             $table->string('division');
             $table->integer('shipping charge');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

@@ -115,7 +115,8 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::get('admin/vouchers/toggle/{id}', [VoucherController::class, 'toggleStatus'])->name('voucher.toggle'); //toggle Voucher status
 
     //shipping location routes
-    Route::get('admin/shipping/divisions', [ShippingLocationController::class, 'getDivisions'])->name('divisions-index'); //list location
+    Route::get('admin/shipping/locations', [ShippingLocationController::class, 'getLoc'])->name('locations-index'); //list location
+    Route::post('admin/shipping/division/add', [ShippingLocationController::class, 'addDivision'])->name('locations-division-add'); //add division
 
 });
 

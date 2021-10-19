@@ -80,8 +80,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class=" {{ Request::route()->getName() == 'divisions-index' ? " active" : "" }}"><a
-                            href="{{ route('divisions-index') }}"><i class="ti-more"></i>&nbsp; Divisions</a>
+                    <li class=" {{ Request::route()->getName() == 'locations-index' ? " active" : "" }}"><a
+                            href="{{ route('locations-index') }}"><i class="ti-more"></i>&nbsp; Locations</a>
                     </li>
                 </ul>
             </li>
