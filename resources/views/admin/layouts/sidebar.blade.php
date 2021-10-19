@@ -52,9 +52,11 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class=" {{ Request::route()->getName() == 'add-product' ? " active" : "" }}"><a
-                            href="{{ route('add-product') }}"><i class="ti-more"></i>Add Products</a></li>
+                            href="{{ route('add-product') }}"><i class="ti-more"></i>Add Products</a>
+                    </li>
                     <li class=" {{ Request::route()->getName() == 'manage-product' ? " active" : "" }}"><a
-                            href="{{ route('manage-product') }}"><i class="ti-more"></i>Manage Products</a></li>
+                            href="{{ route('manage-product') }}"><i class="ti-more"></i>Manage Products</a>
+                    </li>
                 </ul>
             </li>
 
@@ -64,13 +66,25 @@
             <li class=" {{ Request::route()->getName() == 'carousel-index' ? " active" : "" }}"><a
                     href="{{ route('carousel-index') }}"><i class=""></i>&nbsp; Sliders</a></li>
 
-            </li>
+
 
             <li class=" {{ Request::route()->getName() == 'voucher-index' ? " active" : "" }}"><a
                     href="{{ route('voucher-index') }}"><i class=""></i>&nbsp; Discount Vouchers</a></li>
 
-            </li>
 
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>Shipping Info</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class=" {{ Request::route()->getName() == 'divisions-index' ? " active" : "" }}"><a
+                            href="{{ route('divisions-index') }}"><i class="ti-more"></i>&nbsp; Divisions</a>
+                    </li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i data-feather="file"></i>

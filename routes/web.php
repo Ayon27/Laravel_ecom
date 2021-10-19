@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\CarouselController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\admin\ShippingLocationController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\Sub_subcategoryController;
 use App\Http\Controllers\admin\VoucherController;
@@ -112,6 +113,10 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::get('admin/vouchers/edit/{id}', [VoucherController::class, 'edit'])->name('voucher.edit'); //edit Voucher
     Route::post('admin/vouchers/update', [VoucherController::class, 'update'])->name('voucher.update'); //update Voucher
     Route::get('admin/vouchers/toggle/{id}', [VoucherController::class, 'toggleStatus'])->name('voucher.toggle'); //toggle Voucher status
+
+    //shipping location routes
+    Route::get('admin/shipping/divisions', [ShippingLocationController::class, 'getDivisions'])->name('divisions-index'); //list location
+
 });
 
 
