@@ -19,20 +19,24 @@
                 <div class="box" data-toggle="collapse" data-target="#{{ $item->division }}" aria-expanded="false"
                     aria-controls="collapseExample">
                     <div class="box-header with-border">
-
-                        @if($item->status == 1)
                         <h3 class="box-title">{{ $item->division }} <span class="badge badge-pill badge-success">
                                 {{ count($item['districts']) }} </span></h3>
+                        @if($item->status == 1)
+                        <h5 class="box-title ml-5">Status: </h5>
                         <a href="{{ route('locations-toggle',['name' => 'div', 'id' => $item->id]) }}">
                             <span class="badge badge-pill badge-success">Active</span></a>
+
+
                         @else
-                        <h3 class="box-title">{{ $item->division }} <span class="badge badge-pill badge-danger">
-                                {{ count($item['districts']) }} </span></h3>
+                        <h5 class="box-title ml-5">Status: </h5>
                         <a href="{{ route('locations-toggle',['name' => 'div', 'id' => $item->id]) }}">
                             <span class="badge badge-pill badge-danger">Inactive</span>
                         </a>
                         @endif
-                        <h3 class="box-title float-right">Shipping Charge: {{ $item->shipping_charge }} BDT <a
+                        <h5 class="box-title ml-5">Inactive Districts:
+                            {{ $item['districts']->where('status', 0)->count() }}
+                        </h5>
+                        <h5 class="box-title float-right">Shipping Charge: {{ $item->shipping_charge }} BDT <a
                                 href="{{ route('locations-edit',['name' => 'div', 'id' => $item->id]) }}"
                                 class="btn btn-info"> <i class="fa fa-pencil"></i>
                             </a>
@@ -41,7 +45,7 @@
                                     onclick="return confirm('Are you sure you want to delete this item?');">
                                 </i>
                             </a>
-                        </h3>
+                        </h5>
 
 
                     </div>
