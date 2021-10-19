@@ -17,7 +17,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
 
-                    <form action="{{ route('voucher.update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('voucher.update') }}" method="POST">
                         @csrf
 
                         <input type="hidden" name="id" id="id" value="{{ $voucher->id }}">

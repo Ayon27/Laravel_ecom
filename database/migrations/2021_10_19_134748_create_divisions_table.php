@@ -16,7 +16,7 @@ class CreateDivisionsTable extends Migration
         Schema::create('divisions', function (Blueprint $table) {
             $table->id();
             $table->string('division');
-            $table->integer('shipping charge');
+            $table->integer('shipping_charge');
             $table->integer('status')->default(1);
             $table->timestamps();
         });

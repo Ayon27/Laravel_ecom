@@ -17,7 +17,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
 
-                    <form action="{{ route('category.update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('category.update') }}" method="POST">
                         @csrf
 
                         <input type="hidden" name="category_id" id="id" value="{{ $category->id }}">

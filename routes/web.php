@@ -117,7 +117,12 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     //shipping location routes
     Route::get('admin/shipping/locations', [ShippingLocationController::class, 'getLoc'])->name('locations-index'); //list location
     Route::post('admin/shipping/division/add', [ShippingLocationController::class, 'addDivision'])->name('locations-division-add'); //add division
-
+    Route::post('admin/shipping/district/add', [ShippingLocationController::class, 'addDistrict'])->name('locations-district-add'); //add district
+    Route::get('admin/shipping/delete/{name}/{id}', [ShippingLocationController::class, 'delLoc'])->name('locations-delele'); //del district
+    Route::get('admin/shipping/edit/{name}/{id}', [ShippingLocationController::class, 'editLoc'])->name('locations-edit'); //edit district
+    Route::post('admin/shipping/district/update', [ShippingLocationController::class, 'updateDistrict'])->name('locations-district-update'); //update district
+    Route::get('admin/shipping/toggle/{name}/{id}', [ShippingLocationController::class, 'toggleStatus'])->name('locations-toggle'); //toggle location status
+    Route::post('admin/shipping/division/update', [ShippingLocationController::class, 'updateDivision'])->name('locations-division-update'); //update district
 });
 
 

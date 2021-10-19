@@ -17,7 +17,7 @@ class CreateDistrictsTable extends Migration
             $table->id();
             $table->foreignId('division_id')->constrained('divisions')->onUpdate('cascade')->onDelete('cascade');
             $table->string('district');
-            $table->integer('status');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

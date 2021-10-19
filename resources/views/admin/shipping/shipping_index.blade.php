@@ -16,13 +16,37 @@
 
             <div class="col-md-8 col-sm-12">
                 @foreach ($divisions as $item)
-                <div class="box">
+                <div class="box" data-toggle="collapse" data-target="#{{ $item->division }}" aria-expanded="false"
+                    aria-controls="collapseExample">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Divisions <span class="badge badge-pill badge-success">
-                                {{ count($divisions) }} </span></h3>
+
+                        @if($item->status == 1)
+                        <h3 class="box-title">{{ $item->division }} <span class="badge badge-pill badge-success">
+                                {{ count($item['districts']) }} </span></h3>
+                        <a href="{{ route('locations-toggle',['name' => 'div', 'id' => $item->id]) }}">
+                            <span class="badge badge-pill badge-success">Active</span></a>
+                        @else
+                        <h3 class="box-title">{{ $item->division }} <span class="badge badge-pill badge-danger">
+                                {{ count($item['districts']) }} </span></h3>
+                        <a href="{{ route('locations-toggle',['name' => 'div', 'id' => $item->id]) }}">
+                            <span class="badge badge-pill badge-danger">Inactive</span>
+                        </a>
+                        @endif
+                        <h3 class="box-title float-right">Shipping Charge: {{ $item->shipping_charge }} BDT <a
+                                href="{{ route('locations-edit',['name' => 'div', 'id' => $item->id]) }}"
+                                class="btn btn-info"> <i class="fa fa-pencil"></i>
+                            </a>
+                            <a href="{{ route('locations-delele',['name' => 'div', 'id' => $item->id]) }}"
+                                class="btn btn-danger"><i class="fa fa-trash"
+                                    onclick="return confirm('Are you sure you want to delete this item?');">
+                                </i>
+                            </a>
+                        </h3>
+
+
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body">
+                    <div class="box-body collapse" id="{{ $item->division }}">
 
                         <div class="table-responsive">
                             <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
@@ -39,41 +63,31 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($divisions['districts'] as $item)
+                                                @foreach ($item['districts'] as $item)
                                                 <tr role="row" class="odd">
                                                     <td class="sorting_1">{{ $item->district }}</td>
-                                                    <td class="sorting_1">{{ $item->discount }}%</td>
-                                                    <td class="sorting_1">
-                                                        {{ Carbon\Carbon::parse($item->validity)->format('D, d F Y')}}
-                                                    </td>
                                                     <td>
-                                                        @if ($item->validity < Carbon\Carbon::now()) <span href="#">
-                                                            <span class="badge badge-pill badge-warning">Expired</span>
-                                                            </span>
-                                                            @else
-                                                            @if($item->status == 1)
-                                                            <a href="{{ route('voucher.toggle', $item->id) }}">
-                                                                <span
-                                                                    class="badge badge-pill badge-success">Active</span></a>
-                                                            @else
-                                                            <a href="{{ route('voucher.toggle', $item->id) }}">
-                                                                <span
-                                                                    class="badge badge-pill badge-danger">Inactive</span>
-                                                            </a>
-                                                            @endif
-                                                            @endif
 
-
-
+                                                        @if($item->status == 1)
+                                                        <a
+                                                            href="{{ route('locations-toggle',['name' => 'dist', 'id' => $item->id]) }}">
+                                                            <span
+                                                                class="badge badge-pill badge-success">Active</span></a>
+                                                        @else
+                                                        <a
+                                                            href="{{ route('locations-toggle', ['name' => 'dist', 'id' => $item->id]) }}">
+                                                            <span class="badge badge-pill badge-danger">Inactive</span>
+                                                        </a>
+                                                        @endif
                                                     </td>
-                                                    <td><a href="{{ route('voucher.edit', $item->id) }}"
+                                                    <td><a href="{{ route('locations-edit',['name' => 'dist', 'id' => $item->id]) }}"
                                                             class="btn btn-info"> <i class="fa fa-pencil"></i>
-                                                            Edit</a>
-                                                        <a href="{{ route('voucher.delete',$item->id) }}"
+                                                        </a>
+                                                        <a href="{{ route('locations-delele',['name' => 'dist', 'id' => $item->id]) }}"
                                                             class="btn btn-danger"><i class="fa fa-trash"
                                                                 onclick="return confirm('Are you sure you want to delete this item?');">
                                                             </i>
-                                                            Delete</a>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -159,7 +173,7 @@
             <!-- /.box-header -->
             <div class="box-body">
 
-                <form action="{{ route('locations-division-add') }}" method="POST">
+                <form action="{{ route('locations-district-add') }}" method="POST">
                     @csrf
 
                     <div class="row">
