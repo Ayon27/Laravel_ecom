@@ -108,7 +108,7 @@
 
                 <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart"
                         data-toggle="dropdown">
-                        <div class="items-cart-inner">
+                        <div class="items-cart-inner" id="cartTopBtn" onclick="toggleView('cartDropdownMenu')">
                             <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
                             <div class="basket-item-count"><span class="count" id="cartQuantity">0</span></div>
                             <div class="total-price-basket"> <span class="lbl">cart -</span> <span class="total-price">
@@ -117,7 +117,8 @@
                             </div>
                         </div>
                     </a>
-                    <ul class="dropdown-menu" id="cartDropdownMenu">
+                    <ul class="dropdown-menu" id="cartDropdownMenu" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+                     overflow-x: hidden; overflow-y: auto; max-height: 85vh;">
                         <li>
                             <div id="headerCart">
 
@@ -129,6 +130,9 @@
                                         id="cartTotal">BDT 0.0</span> </div>
                                 <div class="clearfix"></div>
                                 <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
+                                <a href="#" class="btn btn-light btn-block m-t-10"
+                                    onclick="toggleView('cartDropdownMenu')" id="closeBtn"
+                                    style="margin-bottom: 10vh">Close (X)</a>
                             </div>
                             <!-- /.cart-total-->
 
@@ -243,3 +247,5 @@
     <!-- ============================================== NAVBAR : END ============================================== -->
 
 </header>
+
+<script src="{{ asset('js/custom.js') }}"></script>

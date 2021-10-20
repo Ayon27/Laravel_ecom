@@ -151,3 +151,7 @@ function updateCartQty(rowId, increase) {
         },
     });
 }
+
+function toggleView(id) {
+    $("#" + id).toggle("fast");
+}
