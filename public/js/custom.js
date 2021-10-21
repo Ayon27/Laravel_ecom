@@ -155,3 +155,59 @@ function updateCartQty(rowId, increase) {
 function toggleView(id) {
     $("#" + id).toggle("fast");
 }
+
+function loadDist(id) {
+    var s = $("#deliveryCharge").empty();
+    $.ajax({
+        type: "GET",
+        url: "/ajax/divison/" + id,
+        dataType: "json",
+        success: function (data) {
+            var d = $('select[name="district_select"]').empty();
+
+            $.each(data.district, function (key, value) {
+                $('select[name="district_select"]').append(
+                    '<option value="' +
+                        value.id +
+                        '">' +
+                        value.district +
+                        "</option>"
+                );
+            });
+            var s1 = $("#deliveryCharge").text(data.shipping.shipping_charge);
+            $("#totalDiv").load(window.location.href + " #totalDiv");
+        },
+    });
+}
+
+function applyVoucher() {
+    var name = $("#voucherInput").val();
+    if (name == "")
+        $("#voucherMsg").text("Enter a voucher code if you have any");
+    else {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: { name: name },
+            url: "/ajax/applyVoucher",
+            success: function (data) {
+                if (data.status == "failed")
+                    $("#voucherMsg").text(data.message);
+                else $("#totalDiv").load(window.location.href + " #totalDiv");
+            },
+        });
+    }
+}
+
+function removeVoucher() {
+    var name = $("#voucherInput").val();
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        data: { name: name },
+        url: "/ajax/deleteVoucher",
+        success: function (data) {
+            $("#totalDiv").load(window.location.href + " #totalDiv");
+        },
+    });
+}

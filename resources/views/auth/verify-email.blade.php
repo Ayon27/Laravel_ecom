@@ -1,41 +1,3 @@
-{{-- <x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
-
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-</div>
-
-@if (session('status') == 'verification-link-sent')
-<div class="mb-4 font-medium text-sm text-green-600">
-    {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-</div>
-@endif
-
-<div class="mt-4 flex items-center justify-between">
-    <form method="POST" action="{{ route('verification.send') }}">
-        @csrf
-
-        <div>
-            <x-jet-button type="submit">
-                {{ __('Resend Verification Email') }}
-            </x-jet-button>
-        </div>
-    </form>
-
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-
-        <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
-            {{ __('Log Out') }}
-        </button>
-    </form>
-</div>
-</x-jet-authentication-card>
-</x-guest-layout> --}}
-
 @extends('user.master')
 
 @section('user.conent')
@@ -47,25 +9,30 @@
             <!-- Sign-in -->
             <div class="col-md-12 col-sm-12 sign-in">
 
-                <h3 class="text-center" style="margin-bottom: 5vh">Thank you for signing up!</h3>
-                <h5 class=""> Could you verify your email address by clicking on the link we just emailed to you? If
-                    you didn't receive the email, we will gladly send you another. However do check that spam
+                <h2 class="text-center" style="margin-bottom: 5vh">Thank you for signing up!</h2>
+                <h5 style="line-height: 2"> Could you verify your email address by clicking on the
+                    link
+                    we just
+                    emailed to you?
+                    If
+                    you didn't receive the email, we will gladly send you another. However, do check that spam
                     folder beforehand! </h5>
 
                 <form class="register-form outer-top-xs text-center" method="POST"
                     action="{{ route('verification.send') }}">
                     @csrf
 
-                    <button type="submit" class="btn-upper btn btn-primary">Resend Verification
+                    <button type="submit" class="btn-upper btn btn-primary m-t-20">Resend Verification
                         Email</button>
 
                 </form>
 
-                <form class="register-form outer-top-xs text-center" method="POST" action="{{ route('user.logout') }}"
+                <form class="register-form outer-top-xs text-center " method="POST" action="{{ route('user.logout') }}"
                     id="logoutform">
                     @csrf
 
-                    <a href="{{ route('user.logout') }}" style="color: gray; text-decoration: none;">Logout</a>
+                    <a href="{{ route('user.logout') }}" style="color: gray; text-decoration: none;"
+                        class="m-t-20">Logout</a>
                 </form>
 
             </div>

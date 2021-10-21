@@ -2,19 +2,21 @@
 
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\CarouselController;
-use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\admin\ShippingLocationController;
+use App\Http\Controllers\Admin\ShippingLocationController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\Sub_subcategoryController;
-use App\Http\Controllers\admin\VoucherController;
+use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\CartController;
-use App\Http\Controllers\user\CategoryController as UserCategoryController;
+use App\Http\Controllers\User\CategoryController as UserCategoryController;
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\CheckoutWrapperController;
 use App\Http\Controllers\User\IndexController;
 use App\Http\Controllers\User\ProductDeatilsController;
-use App\Http\Controllers\user\UserController;
-use App\Http\Controllers\user\UserProfileController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -160,6 +162,14 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::get('/email/verify', function () {
         return view('auth.verify-email');
     })->middleware('auth')->name('verification.notice');
+
+    //checkout route
+    Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+    Route::get('/checkout/init', [CheckoutWrapperController::class, 'setAndRedir'])->name('checkout-init');
+    //get district ajax
+    Route::get('/ajax/divison/{id}', [CheckoutController::class, 'getDistList']);
+    Route::post('/ajax/applyVoucher', [CheckoutController::class, 'applyVoucher']);
+    Route::post('/ajax/deleteVoucher', [CheckoutController::class, 'deleteVoucher']);
 });
 
 

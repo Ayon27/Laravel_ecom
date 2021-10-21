@@ -33,6 +33,7 @@ class CartController extends Controller
                 'color' => $request->color,
                 'size' => $request->size,
                 'stock' => $product->quantity,
+                'slug' => $product->product_slug_en,
             ]
         ]);
         $this->cartUpdateifAuth();
@@ -46,7 +47,7 @@ class CartController extends Controller
         $table = 'shoppingcart';
 
         if (Auth::check()) {
-            $userID = Auth::user()->id;
+            $userID = Auth::user()->id; 
 
             if (Cart::count() == 0) {
                 $this->cartOp->deleteCartFromDatabase($table, $userID);

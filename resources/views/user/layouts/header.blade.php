@@ -129,7 +129,9 @@
                                 <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'
                                         id="cartTotal">BDT 0.0</span> </div>
                                 <div class="clearfix"></div>
-                                <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
+                                <a href="{{ route('checkout-init') }}"
+                                    class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
+
                                 <a href="#" class="btn btn-light btn-block m-t-10"
                                     onclick="toggleView('cartDropdownMenu')" id="closeBtn"
                                     style="margin-bottom: 10vh">Close (X)</a>
