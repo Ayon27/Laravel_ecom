@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Throwable;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 class CartController extends Controller
 {
@@ -47,7 +49,7 @@ class CartController extends Controller
         $table = 'shoppingcart';
 
         if (Auth::check()) {
-            $userID = Auth::user()->id; 
+            $userID = Auth::user()->id;
 
             if (Cart::count() == 0) {
                 $this->cartOp->deleteCartFromDatabase($table, $userID);
@@ -112,7 +114,9 @@ class CartController extends Controller
             $currentUnits++;
             Cart::update($rowId, $currentUnits);
             $this->cartUpdateifAuth();
-            return response()->json(['msg' => 'successful']);
+            if ($this->redirIfCout()) {
+                return response()->json(['msg' => 'successful', 'redir' => 'true']);
+            } else return response()->json(['msg' => 'successful', 'redir' => 'false']);
         } else
             return response()->json(['msg' => 'Selected quantity unavailable']);
     }
@@ -125,8 +129,17 @@ class CartController extends Controller
             $currentUnits--;
             Cart::update($rowId, $currentUnits);
             $this->cartUpdateifAuth();
-            return response()->json(['msg' => 'successful']);
+            if ($this->redirIfCout()) {
+                return response()->json(['msg' => 'successful', 'redir' => 'true']);
+            } else return response()->json(['msg' => 'successful', 'redir' => 'false']);
         } else
             return response()->json(['msg' => 'Quantity cannot be less than 1']);
+    }
+
+    public function redirIfCout()
+    {
+        if (URL::previous() == URL::route('checkout')) {
+            return true;
+        }
     }
 }

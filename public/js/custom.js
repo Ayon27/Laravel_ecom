@@ -133,6 +133,9 @@ function deleteCartItem(rowId) {
         dataType: "json",
         success: function (data) {
             miniCart(0, true);
+            if (data.redir == "true") {
+                window.location.href = "checkout/init";
+            }
         },
     });
 }
@@ -146,8 +149,14 @@ function updateCartQty(rowId, increase) {
             property: increase,
         },
         success: function (data) {
+            console.log(data);
             miniCart(0, true);
             if (data.msg != "successful") $("#qtyErr").text(data.msg);
+            else {
+                if (data.redir == "true") {
+                    window.location.href = "checkout/init";
+                }
+            }
         },
     });
 }
