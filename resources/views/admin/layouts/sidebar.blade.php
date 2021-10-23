@@ -85,6 +85,23 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>Company Info</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class=" {{ Request::route()->getName() == 'phone-index' ? " active" : "" }}"><a
+                            href="{{ route('phone-index') }}"><i class="ti-more"></i>&nbsp; Contact Number</a>
+                    </li>
+                    <li class=" {{ Request::route()->getName() == 'email-index' ? " active" : "" }}"><a
+                            href="{{ route('email-index') }}"><i class="ti-more"></i>&nbsp; Email Address</a>
+                    </li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i data-feather="file"></i>

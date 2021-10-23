@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\CarouselController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\InfoController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ShippingLocationController;
 use App\Http\Controllers\Admin\SubcategoryController;
@@ -125,8 +126,17 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     Route::post('admin/shipping/district/update', [ShippingLocationController::class, 'updateDistrict'])->name('locations-district-update'); //update district
     Route::get('admin/shipping/toggle/{name}/{id}', [ShippingLocationController::class, 'toggleStatus'])->name('locations-toggle'); //toggle location status
     Route::post('admin/shipping/division/update', [ShippingLocationController::class, 'updateDivision'])->name('locations-division-update'); //update district
-});
 
+    //contact number routes
+    Route::get('admin/contact-no/index', [InfoController::class, 'phoneInfo'])->name('phone-index'); //get all contact number
+    Route::post('admin/contact-no/add', [InfoController::class, 'addPhone'])->name('phone-add'); //add contact number
+    Route::get('admin/contact-no/delete/{id}', [InfoController::class, 'deletePhone'])->name('phone-delete'); //delete contact number
+
+    //email address routes
+    Route::get('admin/email-address/index', [InfoController::class, 'emailInfo'])->name('email-index'); //get all email addresses.
+    Route::post('admin/email-address/add', [InfoController::class, 'addEmail'])->name('email-add'); //add email addr
+    Route::get('admin/email-address/delete/{id}', [InfoController::class, 'deleteEmail'])->name('email-delete'); //delete email addr
+});
 
 
 

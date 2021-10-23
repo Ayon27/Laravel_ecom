@@ -35,7 +35,7 @@ class CategoryController extends Controller
             $categories_deleted =  Category::onlyTrashed()->with('admin')->latest()->get();
 
             return view('admin.category.category_index', compact('categories', 'categories_deleted'));
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $notification = array(
                 'message' => 'An error occurred',
                 'alert-type' => 'error'
