@@ -33,18 +33,19 @@ use Illuminate\Support\Facades\Route;
 
 
 //Admin routes grouped for back button prevention after logging out
-Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function () {
-    //Admin Route after login
-    Route::group(['middleware' => ['admin:admin']], function () {
-        Route::get('/aov', [AdminController::class, 'index']);
-        Route::post('/admin/login', [AdminController::class, 'store'])->name('admin.login');
-    });
 
-    //uses admin auth guard. for admins
-    Route::middleware(['auth:sanctum,admin'])->get('/admin/dashboard', function () {
-        return view('admin.index');
-    })->name('dashboard.admin');
+//Admin Route after login
+Route::group(['middleware' => ['admin:admin']], function () {
+    Route::get('/aov', [AdminController::class, 'index']);
+    Route::post('/admin/login', [AdminController::class, 'store'])->name('admin.login');
+});
 
+//uses admin auth guard. for admins
+Route::middleware(['auth:sanctum,admin'])->get('/admin/dashboard', function () {
+    return view('admin.index');
+})->name('dashboard.admin');
+
+Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer', 'auth:sanctum,admin']], function () {
     //admin profile routes
     Route::get('/admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile'); //view
 
@@ -157,12 +158,8 @@ Route::group(['middleware' => ['prevent-back-button', 'XssSanitizer']], function
     //user profile routes
     Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile');
     Route::get('/user/logout', [UserController::class, 'destroy'])->name('user.logout');
-
-    //sanitization middleware
-    Route::group(['middleware' => ['XssSanitizer']], function () {
-        Route::get('/user/edit', [UserProfileController::class, 'editProfile'])->name('user.profile.edit');
-        Route::post('/user/update', [UserProfileController::class, 'updateProfile'])->name('user.profile.edit.save');
-    });
+    Route::get('/user/edit', [UserProfileController::class, 'editProfile'])->name('user.profile.edit');
+    Route::post('/user/update', [UserProfileController::class, 'updateProfile'])->name('user.profile.edit.save');
 
     //user password
     Route::get('/user/password', [UserProfileController::class, 'changePassword'])->name('user.password.change');
